@@ -22,12 +22,12 @@ export function CardProduto(
     
     <Card
         sx={{
-          maxWidth: 230,
+          maxWidth: 210,
           borderRadius: 4,
           backgroundColor: '#ffffffDD',
           position: 'relative',
           overflow: 'visible',
-          boxShadow: 3,
+          boxShadow: 0,
           marginTop: 13,
         }}
       >
@@ -58,7 +58,6 @@ export function CardProduto(
 
           <Typography
             variant="subtitle1"
-            color="text.secondary"
             lineHeight={1}
             sx={{
               mt: 1, 

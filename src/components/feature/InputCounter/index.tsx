@@ -1,5 +1,5 @@
-import { Add, AddCircleOutline, Remove, RemoveCircleOutline, Search } from "@mui/icons-material";
-import { Box, Container, IconButton, InputBase, Typography } from "@mui/material";
+import { Add, Remove } from "@mui/icons-material";
+import { Box, IconButton, InputBase, Typography } from "@mui/material";
 import { useState } from "react";
 
 type CounterProps = {
@@ -48,13 +48,13 @@ export function InputCounter(
       }}
     >
       <IconButton color="primary" disabled={value <= min} onClick={handleDecrement} sx={{background:'#E2EAFA', '&:hover': {background:'#E2EAFA'}}}>
-        <Remove />
+        <Remove fontSize="small" />
       </IconButton>
 
       <Box
         sx={{
-          width: 56,
-          height: 56,
+          width: 36,
+          height: 36,
           border: '1px solid',
           borderColor: 'grey.300',
           display: 'flex',
@@ -63,16 +63,17 @@ export function InputCounter(
         }}
       >
         <Typography
-          variant="h5"
+          variant="h6"
           fontWeight="bold"
           color="primary"
         >
           {value}
         </Typography>
+
       </Box>
 
       <IconButton color="primary" disabled={value >= max} onClick={handleIncrement} sx={{background:'#E2EAFA', '&:hover': {background:'#E2EAFA'}}}>
-        <Add/>
+        <Add fontSize="small"/>
       </IconButton>
     </Box>
 

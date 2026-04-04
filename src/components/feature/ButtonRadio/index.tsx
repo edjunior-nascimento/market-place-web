@@ -1,11 +1,11 @@
-import { Button, Container } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 export function ButtonRadio() {  
   return (
-    <Container>
+    <Box>
       <Button variant="contained" disableElevation>
         Nome
       </Button>
-    </Container>
+    </Box>
   );
 }

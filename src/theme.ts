@@ -23,6 +23,10 @@ const theme = createTheme({
       secondary: '#B50303',
       disabled: '#000000dd',
     },
+    grey: {
+      400: '#BDBDBD',
+    },
+
   },
   components: {
       MuiTypography: {
@@ -67,15 +71,79 @@ const theme = createTheme({
         },
       },
     },
-    MuiInputBase: {
+    
+    MuiStepper: {
       styleOverrides: {
         root: {
-          backgroundColor: 'white',
-          borderRadius: '10px',
-          boxShadow: '0px 2px 3px rgba(0, 0, 0, 0.2)',
-        }
+          padding: 0,
+        },
       },
     },
+
+      
+      MuiStepConnector: {
+        styleOverrides: {        
+          root: {
+            top: 10,
+            left: 'calc(-50% + 12px)',
+            right: 'calc(50% + 12px)',            
+            '&.Mui-active .MuiStepConnector-line': {
+              borderColor: '#B50303',
+            },
+            '&.Mui-completed .MuiStepConnector-line': {
+              borderColor: '#B50303',
+            },
+          },
+          line: {
+            borderTopWidth: 4,
+            borderColor: '#BDBDBD',
+            borderRadius: 1,
+          },
+        },
+      },
+
+    MuiStepIcon: {
+      styleOverrides: {
+        root: {
+          width: 24,
+          height: 24,
+          borderRadius: '50%',
+          color: '#BDBDBD',
+
+          '&.Mui-active': {
+            color: '#B50303',
+          },
+
+          '&.Mui-completed': {
+            color: '#B50303',
+          },
+        },
+        text: {
+          fill: '#fff',
+          fontWeight: 600,
+        },
+      },
+    },
+
+    MuiStepLabel: {
+      styleOverrides: {
+        label: {
+          marginTop: 8,
+          fontSize: 14,
+          color: '#BDBDBD',
+
+          '&.Mui-active': {
+            color: '#B50303',
+            fontWeight: 500,
+          },
+
+          '&.Mui-completed': {
+            color: '#B50303',
+          },
+        },
+      },
+    },
+
   },
 });
 

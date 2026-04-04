@@ -1,6 +1,5 @@
-import { Box, Container, InputBase, Typography} from "@mui/material";
+import { Box, Container, Typography} from "@mui/material";
 import { Header } from "../../components/layouts/Header";
-import { Search } from "@mui/icons-material";
 import { ButtonRadio } from "../../components/feature/ButtonRadio";
 import { CardProduto } from "../../components/layouts/CardProduto";
 import { InputSearch } from "../../components/feature/InputSearch";
@@ -9,7 +8,9 @@ export function ComercioPage() {
   return (
     <Container sx={{padding:'10px'}}>
       <Header />
-      <Box>
+      <Box sx={{
+        px: {xs: '0px', md: '150px'},
+      }}>
         <Box sx={{display:"flex", justifyContent: 'space-between'}} m={1}>
           <Box>
             <Typography variant="h5" component="h5">MacDonald’s</Typography>
@@ -38,8 +39,28 @@ export function ComercioPage() {
 
         <Box>
           <Typography py={2} variant="h5">Pratos do Dia</Typography>
-          <Box sx={{display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'10px', p:1}}>
+          <Box
+           sx={{
+            display: {xs: 'grid', md: 'flex'},
+            flexWrap: {xs: 'nowrap', md: 'wrap'},
+            gridTemplateColumns: {xs: '2fr 2fr', md: '1fr'},
+            gap: '10px',
+            padding: '1rem',
+          }}
+        >
           
+            <CardProduto
+              title="Prato de Camarão com legumes e arroz Prato de Camarão com legumes e arroz"
+              description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
+              price="R$ 20,00"
+            />
+
+            <CardProduto
+              title="Prato de Camarão com legumes e arroz Prato de Camarão com legumes e arroz"
+              description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
+              price="R$ 20,00"
+            />
+                
             <CardProduto
               title="Prato de Camarão com legumes e arroz Prato de Camarão com legumes e arroz"
               description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
@@ -61,7 +82,6 @@ export function ComercioPage() {
         </Box>
 
       </Box>
-
     </Container>
   );
 }
