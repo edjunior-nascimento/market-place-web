@@ -2,12 +2,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ComercioPage } from "./pages/ComercioPage";
 import { ProdutoPage } from "./pages/ProdutoPage";
 import { PedidoPage } from "./pages/PedidoPage";
-import { EntregaPage } from "./pages/EntregaPage";
 import { PagamentoPage } from "./pages/PagamentoPage";
 import { TrocoPage } from "./pages/TrocoPage";
 import { DescontoPage } from "./pages/DescontoPage";
 import { FinalizacaoPage } from "./pages/FinalizacaoPage";
 import { ConfirmacaoPage } from "./pages/ConfirmacaoPage";
+import { EntregaPage } from "./pages/EntregaPage";
 
 function RouterApp(){
     return(

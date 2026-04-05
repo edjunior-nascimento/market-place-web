@@ -26,10 +26,9 @@ const theme = createTheme({
     grey: {
       400: '#BDBDBD',
     },
-
   },
   components: {
-      MuiTypography: {
+    MuiTypography: {
       styleOverrides: {
         root: {
           fontFamily: 'Arial, sans-serif',
@@ -67,11 +66,45 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '50px'
+          borderRadius: '50px',
+          boxShadow: 'none',
         },
       },
     },
-    
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: '#727272',
+
+          '&.Mui-focused': {
+            color: '#727272',
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          backgroundColor: '#FFFFFF',
+          borderWidth: 0,
+
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'rgb(218, 218, 218)',
+          },
+        },
+
+        notchedOutline: {
+          borderColor: '#939393',
+          borderWidth: 0,
+        },
+
+        input: {
+          padding: '14px',
+          fontSize: 14,
+        },
+      },
+    },
     MuiStepper: {
       styleOverrides: {
         root: {
@@ -79,29 +112,26 @@ const theme = createTheme({
         },
       },
     },
-
-      
-      MuiStepConnector: {
-        styleOverrides: {        
-          root: {
-            top: 10,
-            left: 'calc(-50% + 12px)',
-            right: 'calc(50% + 12px)',            
-            '&.Mui-active .MuiStepConnector-line': {
-              borderColor: '#B50303',
-            },
-            '&.Mui-completed .MuiStepConnector-line': {
-              borderColor: '#B50303',
-            },
+    MuiStepConnector: {
+      styleOverrides: {        
+        root: {
+          top: 10,
+          left: 'calc(-50% + 12px)',
+          right: 'calc(50% + 12px)',            
+          '&.Mui-active .MuiStepConnector-line': {
+            borderColor: '#B50303',
           },
-          line: {
-            borderTopWidth: 4,
-            borderColor: '#BDBDBD',
-            borderRadius: 1,
+          '&.Mui-completed .MuiStepConnector-line': {
+            borderColor: '#B50303',
           },
         },
+        line: {
+          borderTopWidth: 4,
+          borderColor: '#BDBDBD',
+          borderRadius: 1,
+        },
       },
-
+    },
     MuiStepIcon: {
       styleOverrides: {
         root: {
@@ -124,7 +154,6 @@ const theme = createTheme({
         },
       },
     },
-
     MuiStepLabel: {
       styleOverrides: {
         label: {
@@ -143,7 +172,6 @@ const theme = createTheme({
         },
       },
     },
-
   },
 });
 
