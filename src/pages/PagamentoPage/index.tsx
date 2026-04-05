@@ -24,7 +24,7 @@ export function PagamentoPage() {
       >  
         <Box sx={{ display: 'flex', flexDirection: 'column', gap:'10px'}}>
 
-          <Typography py={2} variant="h5">Endereço de Entrega</Typography>
+          <Typography py={2} variant="h5">Forma de Pagamento</Typography>
 
           <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, gap:'10px'}}>
             
