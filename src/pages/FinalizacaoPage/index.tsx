@@ -3,6 +3,7 @@ import { CardPedido } from "../../components/layouts/CardPedido";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { CardEntrega } from "../../components/layouts/CardEntrega";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
+import { Link } from "react-router-dom";
 
 export function FinalizacaoPage() {  
   return (
@@ -118,8 +119,8 @@ export function FinalizacaoPage() {
 
 
         <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button>
-          <Button variant="contained">Continuar</Button>
+          <Link to="/pagamento"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
+          <Link to="/confirmacao"><Button variant="contained">Continuar</Button></Link>
         </Box>
 
       </Box>

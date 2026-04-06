@@ -5,13 +5,12 @@ import { Pagination } from 'swiper/modules';
 import { CheckboxOpcao } from "../../components/feature/CheckboxOpcao";
 import { InputCounter } from "../../components/feature/InputCounter";
 import { AddShoppingCart } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export function ProdutoPage() {  
   return (
-    <Container>
-
-      <Header />  
-
+    <Container sx={{padding:'10px'}}>
+      <Header link="/"/>  
       <Box 
         sx={{ 
           px: {xs: '0px', md: '150px'},
@@ -76,12 +75,11 @@ export function ProdutoPage() {
                 fullWidth placeholder="Observações" multiline minRows={3}/>
 
               <Box sx={{display:'flex', flexDirection: 'row', justifyContent: 'space-between'}} mt={2}>
-                <Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Comprar</Button>
+                <Link to="/pedido"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Comprar</Button></Link>
                 <Button variant="contained"  startIcon={<AddShoppingCart />}>Adicionar ao Carrinho</Button>
               </Box>
             </Box>
       </Box>
-     
     </Container>
   );
 }

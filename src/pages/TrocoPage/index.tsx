@@ -1,6 +1,7 @@
 import { Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography } from "@mui/material";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function TrocoPage() {  
 
@@ -34,8 +35,8 @@ export function TrocoPage() {
         </Box>
 
         <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button>
-          <Button variant="contained">Continuar</Button>
+          <Link to="/pagamento"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
+          <Link to="/desconto"><Button variant="contained">Continuar</Button></Link>
         </Box>
 
       </Box>

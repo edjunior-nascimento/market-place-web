@@ -9,7 +9,7 @@ export function ConfirmacaoPage() {
   
   return (
     <Container sx={{padding:'10px'}}>
-      <Header />
+      <Header link="/"/>
       <Box 
         sx={{
           display: 'flex',

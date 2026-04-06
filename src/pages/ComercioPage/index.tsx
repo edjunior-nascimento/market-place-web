@@ -7,8 +7,11 @@ import { InputSearch } from "../../components/feature/InputSearch";
 export function ComercioPage() {  
   return (
     <Container sx={{padding:'10px'}}>
-      <Header />
+      <Header link="/" />
       <Box sx={{
+        display: 'flex',
+        gap: '20px',
+        flexDirection: 'column',
         px: {xs: '0px', md: '150px'},
       }}>
         <Box sx={{display:"flex", justifyContent: 'space-between'}} m={1}>

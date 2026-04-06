@@ -5,6 +5,7 @@ import { CardEntrega } from "../../components/layouts/CardEntrega";
 import { Add, PlusOne } from "@mui/icons-material";
 import { useState } from "react";
 import { ModalEndereco } from "../../components/layouts/ModalEndereco";
+import { Link } from "react-router-dom";
 
 export function EntregaPage() {  
   
@@ -53,8 +54,8 @@ export function EntregaPage() {
         </Box>
 
         <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button>
-          <Button variant="contained">Continuar</Button>
+          <Link to="/pedido"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
+          <Link to="/pagamento"><Button variant="contained">Continuar</Button></Link>
         </Box>
 
       </Box>

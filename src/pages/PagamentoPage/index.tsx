@@ -6,6 +6,7 @@ import { Add, PlusOne } from "@mui/icons-material";
 import { useState } from "react";
 import { ModalEndereco } from "../../components/layouts/ModalEndereco";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
+import { Link } from "react-router-dom";
 
 export function PagamentoPage() {  
   
@@ -38,8 +39,8 @@ export function PagamentoPage() {
         </Box>
 
         <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button>
-          <Button variant="contained">Continuar</Button>
+          <Link to="/entrega"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
+          <Link to="/troco"><Button variant="contained">Continuar</Button></Link>
         </Box>
 
       </Box>
