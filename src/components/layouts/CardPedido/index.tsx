@@ -1,5 +1,4 @@
-import { ArrowForward } from "@mui/icons-material";
-import {Box, Card, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
+import {Box, Card, CardMedia, Typography } from "@mui/material";
 import { InputCounter } from "../../feature/InputCounter";
 
 
@@ -9,6 +8,7 @@ type CardPedidoProps = {
   descricao: string;
   quantidade: string;
   preco: string;
+  modoExibicao?: boolean;
 };
 
 
@@ -18,7 +18,8 @@ export function CardPedido(
   titulo,
   descricao,
   quantidade,
-  preco
+  preco,
+  modoExibicao = false,
 }: CardPedidoProps
 ) {  
   return (
@@ -64,7 +65,13 @@ export function CardPedido(
               justifyContent: 'space-between',
             }}
           >
-            <InputCounter min={1} initialValue={parseInt(quantidade)}/>
+            {modoExibicao ? (
+              <Typography variant="subtitle1">
+                Quant.: {quantidade}
+              </Typography>
+            ) : (
+              <InputCounter min={1} initialValue={parseInt(quantidade)}/>
+            )}
             <Typography variant="h6" fontWeight="bold">
               {preco}
             </Typography>

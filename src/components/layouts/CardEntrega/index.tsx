@@ -10,11 +10,11 @@ type CardEntregaProps = {
   endereco: string;
   numero: string;
   referencia: string;
-  selecionado: boolean;
-
+  selecionado?: boolean;
+  modoExibicao?: boolean;
   
-  onEditar: () => void;
-  onSelecionar: (codigo: number) => void;
+  onEditar?: () => void;
+  onSelecionar?: (codigo: number) => void;
 
 };
 
@@ -28,6 +28,7 @@ export function CardEntrega(
   numero,
   referencia,  
   selecionado,
+  modoExibicao = false,
   onEditar,
   onSelecionar,
 }: CardEntregaProps
@@ -44,11 +45,10 @@ export function CardEntrega(
           flexDirection: 'column',
           padding: '20px',
           gap: '20px',
-
+          height: 'stretch',
             
           border: selecionado ? '2px solid #B50303' : '2px solid transparent',
           cursor: 'pointer',
-
         }}
       >
       <Box sx={{display:'flex', flexDirection:'column', gap:'5px'}}>
@@ -65,6 +65,8 @@ export function CardEntrega(
           {referencia}
         </Typography>
       </Box>
+
+      {!modoExibicao && (
       <Box
         sx={{
           px: 0,
@@ -84,8 +86,9 @@ export function CardEntrega(
             color: selecionado? '#FFFFFF':'#B50303', '&:hover': {background:'#E2EAFA'}
             
           }} 
-          onClick={() => onSelecionar(codigo)}>{selecionado ? 'Selecionado' : 'Selecionar'}</Button>
+          onClick={() => onSelecionar?.(codigo)}>{selecionado ? 'Selecionado' : 'Selecionar'}</Button>
       </Box>
+      )}
     </Card>
 
   );
