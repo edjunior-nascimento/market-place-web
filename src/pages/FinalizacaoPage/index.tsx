@@ -37,7 +37,7 @@ export function FinalizacaoPage() {
           />
         </Box>
 
-        <Box sx={{ width: '100%', height: 'auto', display: 'flex', flexDirection: 'row', gap:'10px'}}>
+        <Box sx={{ width: '100%', height: 'auto', display: 'flex', flexDirection: {xs:'column', md: 'row'}, gap:'10px'}}>
           <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap:'5px'}}>
             <Typography py={2} variant="h5">Endereço de Entrega</Typography>
             <CardEntrega
@@ -65,6 +65,7 @@ export function FinalizacaoPage() {
           sx={{
           backgroundColor: '#ffffffDD',
           padding: '20px',
+          marginTop: '20px',
           borderRadius: 4,
           boxShadow: 0,
           display: 'flex',
@@ -113,10 +114,6 @@ export function FinalizacaoPage() {
 
 
         </Card>
-
-
-        
-
 
         <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
           <Link to="/pagamento"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>

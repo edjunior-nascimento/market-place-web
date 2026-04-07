@@ -37,7 +37,7 @@ export function CardEntrega(
     
     <Card
         sx={{
-          width: { xs: '100%', md: '400px' },
+          width: '100%',
           borderRadius: 4,
           backgroundColor: '#ffffffDD',
           boxShadow: 0,
