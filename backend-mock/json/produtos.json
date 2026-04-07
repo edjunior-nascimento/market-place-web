@@ -1,0 +1,75 @@
+[
+  {
+    "codigo": "PRT001",
+    "imagens": [
+      "https://exemplo.com/imagens/feijoada.jpg",
+      "https://exemplo.com/imagens/feijoada2.jpg"
+    ],
+    "nome": "Feijoada Completa",
+    "descricao": "Tradicional feijoada brasileira com acompanhamentos.",
+    "preco": 49.90,
+    "quantidade": 100,
+    "componentes": ["Feijão preto", "Carne seca", "Linguiça", "Arroz", "Farofa", "Couve", "Laranja"],
+    "categoria": 0
+  },
+  {
+    "codigo": "PRT002",
+    "imagens": [
+      "https://exemplo.com/imagens/strogonoff.jpg"
+    ],
+    "nome": "Strogonoff de Frango",
+    "descricao": "Strogonoff de frango cremoso servido com arroz e batata palha.",
+    "preco": 39.90,
+    "quantidade": 80,
+    "componentes": ["Frango", "Creme de leite", "Champignon", "Arroz", "Batata palha"],
+    "categoria": 1
+  },
+  {
+    "codigo": "PRT003",
+    "imagens": [
+      "https://exemplo.com/imagens/lasanha.jpg"
+    ],
+    "nome": "Lasanha à Bolonhesa",
+    "descricao": "Lasanha de massa fresca com molho bolonhesa e queijo gratinado.",
+    "preco": 44.90,
+    "quantidade": 60,
+    "componentes": ["Massa", "Molho bolonhesa", "Queijo", "Presunto", "Molho branco"],
+    "categoria": 2
+  },
+  {
+    "codigo": "PRT004",
+    "imagens": [
+      "https://exemplo.com/imagens/salada.jpg"
+    ],
+    "nome": "Salada Caesar",
+    "descricao": "Salada Caesar com frango grelhado, croutons e molho especial.",
+    "preco": 29.90,
+    "quantidade": 50,
+    "componentes": ["Alface", "Frango grelhado", "Croutons", "Molho Caesar", "Parmesão"],
+    "categoria": 3
+  },
+  {
+    "codigo": "PRT005",
+    "imagens": [
+      "https://exemplo.com/imagens/pizza.jpg"
+    ],
+    "nome": "Pizza Margherita",
+    "descricao": "Pizza clássica com molho de tomate, mussarela e manjericão.",
+    "preco": 59.90,
+    "quantidade": 40,
+    "componentes": ["Massa", "Molho de tomate", "Mussarela", "Manjericão"],
+    "categoria": 4
+  },
+  {
+    "codigo": "PRT006",
+    "imagens": [
+      "https://exemplo.com/imagens/sushi.jpg"
+    ],
+    "nome": "Combo Sushi",
+    "descricao": "Combo de sushis variados com 20 peças.",
+    "preco": 69.90,
+    "quantidade": 30,
+    "componentes": ["Arroz", "Salmão", "Alga", "Cream cheese", "Pepino"],
+    "categoria": 5
+  }
+]
