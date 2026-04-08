@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 
 
 type CardProdutoProps = {
-  image?: string;
-  title: string;
-  description: string;
-  price: string;
+  imagem?: string;
+  nome: string;
+  descricao: string;
+  preco: string;
 };
 
 
 export function CardProduto(
 {
-  image,
-  title,
-  description,
-  price,
+  imagem,
+  nome,
+  descricao,
+  preco,
 }: CardProdutoProps
 ) {  
   return (
@@ -32,7 +32,6 @@ export function CardProduto(
             marginTop: 13,
           }}
         >
-      
           
           <Box
             sx={{
@@ -48,15 +47,15 @@ export function CardProduto(
           >
             <CardMedia
               component="img"
-              image={image?image:'./sem-img.png'}
-              alt={title}
+              image={imagem?imagem:'./sem-img.png'}
+              alt={nome}
               sx={{ width: '100%', height: '100%' }}
             />
           </Box>
 
           <CardContent sx={{ padding:1, pt: 9}}>
             <Typography variant="h6" fontWeight="bold" lineHeight={1.1} sx={{display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical' , overflow: 'hidden'}}>
-              {title}
+              {nome}
             </Typography>
 
             <Typography
@@ -70,7 +69,7 @@ export function CardProduto(
                 overflow: 'hidden'
               }}
             >
-              {description}
+              {descricao}
             </Typography>
 
             <Box
@@ -83,7 +82,7 @@ export function CardProduto(
               }}
             >
               <Typography variant="h6" fontWeight="bold">
-                {price}
+                {preco}
               </Typography>
 
               <IconButton color="primary">

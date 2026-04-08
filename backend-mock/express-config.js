@@ -42,22 +42,37 @@ app.get('/api/produtos', (req, res) => {
   });
 });
 
-//Outros Exemplos
-app.get('/api/users', (req, res) => {
-  res.json([
-    { id: 1, name: 'João' },
-    { id: 2, name: 'Maria' }
-  ]);
-});
+app.get('/api/categorias', (req, res) => {      
+  const filePath = path.join(__dirname, 'json/categorias.json');
 
-app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({
+        code: 500,
+        status: "error",
+        message: "Erro ao carregar os dados das categorias",
+        data: null
+      });
+    }
 
-  if (username === 'admin' && password === '1234') {
-    res.json({ token: 'fake-jwt-token' });
-  } else {
-    res.status(401).json({ error: 'Credenciais inválidas' });
-  }
+    try {
+      const categorias = JSON.parse(data);
+      return res.status(200).json({
+        code: 200,
+        status: "success",
+        message: "Categorias retornadas com sucesso",
+        data: categorias
+      });
+
+    } catch (parseError) {
+       return res.status(500).json({
+        code: 500,
+        status: "error",
+        message: "Erro ao interpretar categorias",
+        data: null
+      });
+    }
+  });
 });
 
 // Start do servidor

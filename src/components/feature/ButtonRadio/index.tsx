@@ -1,10 +1,14 @@
 import { Box, Button } from "@mui/material";
 
-export function ButtonRadio() {  
+interface ButtonRadioProps {
+  label: string;
+}
+
+export function ButtonRadio({ label }: ButtonRadioProps) {  
   return (
     <Box>
       <Button variant="contained" disableElevation>
-        Nome
+        {label}
       </Button>
     </Box>
   );

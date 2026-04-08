@@ -68,6 +68,8 @@ const theme = createTheme({
         root: {
           borderRadius: '50px',
           boxShadow: 'none',
+          whiteSpace: 'nowrap', 
+          textTransform: 'capitalize'
         },
       },
     },

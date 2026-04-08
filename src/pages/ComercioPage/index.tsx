@@ -3,8 +3,61 @@ import { Header } from "../../components/layouts/Header";
 import { ButtonRadio } from "../../components/feature/ButtonRadio";
 import { CardProduto } from "../../components/layouts/CardProduto";
 import { InputSearch } from "../../components/feature/InputSearch";
+import { useEffect, useState } from "react";
+import ProdutoService from "../../service/produto.service";
+import { ProdutoType } from "../../types/produto.type";
+import { CategoriaType } from "../../types/categoria.type";
+import CategoriaService from "../../service/categoria.service";
 
 export function ComercioPage() {  
+
+  const [produtos, setProdutos] = useState<ProdutoType[]>([]);
+  const [categorias, setCategorias] = useState<CategoriaType[]>([]);
+  const [pesquisa, setPesquisa] = useState('');
+  const [loading, setLoading] = useState(false);
+  
+  useEffect(() => {
+    setLoading(true);
+    
+    async function loadData() {
+      await getCategorias();
+      await getProdutos();
+    }
+
+    loadData();
+   
+  }, []);
+
+  async function getCategorias() {
+    CategoriaService.listar()
+      .then(response => {
+        setCategorias(response);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar entregas', error);
+      })
+      .finally(() => {     
+        setLoading(false);
+      });
+  }
+
+  async function getProdutos() {
+    ProdutoService.listar()
+      .then(response => {
+        setProdutos(response);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar entregas', error);
+      })
+      .finally(() => {     
+        setLoading(false);
+      });
+  }
+
+  const filtroProdutos = produtos.filter(produto =>
+    produto.nome.toLowerCase().includes(pesquisa.toLowerCase())
+  );
+
   return (
     <Container sx={{padding:'10px'}}>
       <Header link="/" />
@@ -26,62 +79,59 @@ export function ComercioPage() {
           </Box>
         </Box>
         
-        <InputSearch></InputSearch>
+        <InputSearch pesquisa={pesquisa} setPesquisa={setPesquisa} />
 
-        <Box sx={{display:'flex', flexDirection: 'row', overflowX: 'auto', gap: '10px', scrollbarWidth: 'none'}} px={1} py={2}>
-          <ButtonRadio />
-          <ButtonRadio />
-          <ButtonRadio />
-          <ButtonRadio />
-          <ButtonRadio />
-          <ButtonRadio />
-          <ButtonRadio />
-          <ButtonRadio />
-          <ButtonRadio />
+        <Box 
+          sx={{
+            display:'flex', 
+            flexDirection: 'row', 
+            overflowX: 'auto', 
+            gap: '10px', 
+            scrollbarWidth: 'none',
+            background: '#F5F5F5',
+            position: "sticky",
+            top: 0,
+            zIndex: 10,
+            }} px={1} py={2}>
+          
+          {categorias.map((categoria) => (
+            <ButtonRadio key={categoria.id} label={categoria.nome} />
+          ))}
         </Box>
 
         <Box>
-          <Typography py={2} variant="h5">Pratos do Dia</Typography>
-          <Box
-           sx={{
-            display: {xs: 'grid', md: 'flex'},
-            flexWrap: {xs: 'nowrap', md: 'wrap'},
-            gridTemplateColumns: {xs: '2fr 2fr', md: '1fr'},
-            gap: '10px',
-            padding: '1rem',
-          }}
-        >
-          
-            <CardProduto
-              title="Prato de Camarão com legumes e arroz Prato de Camarão com legumes e arroz"
-              description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
-              price="R$ 20,00"
-            />
+          {
+            loading ? (
+              <Typography>Carregando...</Typography>
+            ) : (
+              categorias.map((categoria) => (
+                <Box>
+                  <Typography py={2} variant="h5" key={categoria.id}>{categoria.nome}</Typography>
+                  <Box
+                    sx={{
+                      display: {xs: 'grid', md: 'flex'},
+                      flexWrap: {xs: 'nowrap', md: 'wrap'},
+                      gridTemplateColumns: {xs: '2fr 2fr', md: '1fr'},
+                      gap: '10px',
+                      padding: '1rem',
+                    }}
+                  >
+                    {
 
-            <CardProduto
-              title="Prato de Camarão com legumes e arroz Prato de Camarão com legumes e arroz"
-              description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
-              price="R$ 20,00"
-            />
-                
-            <CardProduto
-              title="Prato de Camarão com legumes e arroz Prato de Camarão com legumes e arroz"
-              description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
-              price="R$ 20,00"
-            />
-
-            <CardProduto
-              title="Prato de Camarão com legumes e arroz Prato de Camarão com legumes e arroz"
-              description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
-              price="R$ 20,00"
-            />
-
-            <CardProduto
-              title="Prato de Camarão"
-              description="O prato vem com arroz, cenoura, verduras, camarão com molho O prato vem com arroz, cenoura, verduras, camarão com molho..."
-              price="R$ 20,00"
-            />
-          </Box>
+                      filtroProdutos.filter(produto => produto.categoria === Number(categoria.id)).map((produto) => (
+                        <CardProduto
+                          key={produto.codigo}
+                          nome={produto.nome}
+                          descricao={produto.descricao}
+                          preco={produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                        />
+                      ))
+                    }
+                  </Box>
+                </Box>
+              ))
+            )
+          }
         </Box>
 
       </Box>
