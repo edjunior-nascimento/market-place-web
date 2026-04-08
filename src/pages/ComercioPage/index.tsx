@@ -3,7 +3,7 @@ import { Header } from "../../components/layouts/Header";
 import { ButtonRadio } from "../../components/feature/ButtonRadio";
 import { CardProduto } from "../../components/layouts/CardProduto";
 import { InputSearch } from "../../components/feature/InputSearch";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, ReactNode, Ref } from "react";
 import ProdutoService from "../../service/produto.service";
 import { ProdutoType } from "../../types/produto.type";
 import { CategoriaType } from "../../types/categoria.type";
@@ -11,8 +11,11 @@ import CategoriaService from "../../service/categoria.service";
 
 export function ComercioPage() {  
 
+  const categoriaRefs = useRef<Record<string, HTMLElement | null>>({});
+
   const [produtos, setProdutos] = useState<ProdutoType[]>([]);
   const [categorias, setCategorias] = useState<CategoriaType[]>([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>(categorias[0]?.id || '');
   const [pesquisa, setPesquisa] = useState('');
   const [loading, setLoading] = useState(false);
   
@@ -57,6 +60,14 @@ export function ComercioPage() {
   const filtroProdutos = produtos.filter(produto =>
     produto.nome.toLowerCase().includes(pesquisa.toLowerCase())
   );
+  
+  const scrollCategoria = (id: string) => {
+    setCategoriaSelecionada(id);
+    categoriaRefs.current[id]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <Container sx={{padding:'10px'}}>
@@ -78,9 +89,7 @@ export function ComercioPage() {
             <Box component="img" sx={{maxWidth:'62px'}} src="./sem-img-comercio.png" alt="Logo Comércio" />
           </Box>
         </Box>
-        
         <InputSearch pesquisa={pesquisa} setPesquisa={setPesquisa} />
-
         <Box 
           sx={{
             display:'flex', 
@@ -95,10 +104,9 @@ export function ComercioPage() {
             }} px={1} py={2}>
           
           {categorias.map((categoria) => (
-            <ButtonRadio key={categoria.id} label={categoria.nome} />
+            <ButtonRadio key={categoria.id} label={categoria.nome} onClick={() => scrollCategoria(categoria.id)} ativado={categoria.id === categoriaSelecionada} />
           ))}
         </Box>
-
         <Box>
           {
             loading ? (
@@ -106,7 +114,16 @@ export function ComercioPage() {
             ) : (
               categorias.map((categoria) => (
                 <Box>
-                  <Typography py={2} variant="h5" key={categoria.id}>{categoria.nome}</Typography>
+                  <Typography
+                    py={2} 
+                    variant="h5" 
+                    key={categoria.id} 
+                    ref={(el: HTMLElement | null) => {
+                      if (el) categoriaRefs.current[categoria.id] = el;
+                    }}
+                    >
+                      {categoria.nome} 
+                  </Typography>
                   <Box
                     sx={{
                       display: {xs: 'grid', md: 'flex'},
@@ -133,7 +150,6 @@ export function ComercioPage() {
             )
           }
         </Box>
-
       </Box>
     </Container>
   );

@@ -71,6 +71,14 @@ const theme = createTheme({
           whiteSpace: 'nowrap', 
           textTransform: 'capitalize'
         },
+        containedPrimary: {
+          backgroundColor: '#B50303',
+          color: '#FFFFFF'
+        },
+        containedSecondary: {
+          backgroundColor: '#E2EAFA',
+          color: '#B50303'
+        }
       },
     },
     MuiInputLabel: {
