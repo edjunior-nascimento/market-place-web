@@ -5,11 +5,42 @@ import { Pagination } from 'swiper/modules';
 import { CheckboxOpcao } from "../../components/feature/CheckboxOpcao";
 import { InputCounter } from "../../components/feature/InputCounter";
 import { AddShoppingCart } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { use, useEffect, useState } from "react";
+import { ProdutoType } from "../../types/produto.type";
+import ProdutoService from "../../service/produto.service";
 
 export function ProdutoPage() {  
+  
+  const { produtoId } = useParams();
+    const [produto, setProduto] = useState<ProdutoType | null>(null);
+    const [loading, setLoading] = useState(false);
+  
+
+  useEffect(() => {
+    setLoading(true);
+     if (produtoId) {
+       ProdutoService.getById(produtoId)
+        .then(response => {
+          setProduto(response);
+        })
+        .catch(error => {
+          console.error('Erro ao buscar produto', error);
+        })
+        .finally(() => {     
+          setLoading(false);
+        });
+     }  
+  }, []);
+
+
   return (
-    <Container sx={{padding:'10px'}}>
+    loading ? (
+      <Typography variant="h6" align="center" mt={4}>
+        Carregando...
+      </Typography>
+    ) : (
+      <Container sx={{padding:'10px'}}>
       <Header link="/"/>  
       <Box 
         sx={{ 
@@ -35,34 +66,32 @@ export function ProdutoPage() {
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap:'10px', p:2, width: {xs: '100%', md: '50%'},}}>
               <Typography variant="h5" color="primary">
-                R$ 25,00
+                {produto?.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </Typography>
 
               <Typography variant="h5">
-                Camarão Com Legumes
+                {produto?.nome}
               </Typography>
               
               <Typography>
-                Arroz Integral ou Branco, Feijão, Salada e Legumes
+                {produto?.descricao}
               </Typography>
               
               <Box sx={{display:'flex', justifyContent: 'center'}}>
                 <InputCounter
                   min={1}
-                  max={5}
+                  max={produto?.quantidade || 10}
                   initialValue={1}
                   onChange={(value) => console.log(value)}
                 />
               </Box>
 
-              <Box sx={{display:'flex', flexDirection: 'column', gap: '3px'}}>          
-                <CheckboxOpcao habilitado={true}>Arroz Branco</CheckboxOpcao>
-                <CheckboxOpcao habilitado={true}>Arroz Grega</CheckboxOpcao>
-                <CheckboxOpcao habilitado={true}>Macarrão</CheckboxOpcao>
-                <CheckboxOpcao habilitado={true}>Feijão</CheckboxOpcao>
-                <CheckboxOpcao habilitado={true}>Salada</CheckboxOpcao>
-                <CheckboxOpcao habilitado={true}>Legumes</CheckboxOpcao>
-                <CheckboxOpcao habilitado={true}>Molho</CheckboxOpcao>
+              <Box sx={{display:'flex', flexDirection: 'column', gap: '3px'}}>      
+                {
+                produto?.componentes?.map((opcional:string) => (
+                    <CheckboxOpcao habilitado={true}>{opcional}</CheckboxOpcao>
+                  ))
+                }
               </Box>
 
               <InputBase 
@@ -81,5 +110,6 @@ export function ProdutoPage() {
             </Box>
       </Box>
     </Container>
+    )
   );
 }

@@ -42,6 +42,52 @@ app.get('/api/produtos', (req, res) => {
   });
 });
 
+app.get('/api/produto/:id', (req, res) => {      
+  const filePath = path.join(__dirname, 'json/produtos.json');
+  const { id } = req.params;
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({
+        code: 500,
+        status: "error",
+        message: "Erro ao carregar os dados dos produtos",
+        data: null
+      });
+    }
+
+    try {
+      const produtos = JSON.parse(data);
+      const produto = produtos.find(p => p.codigo === id);
+
+      if (!produto) {
+        return res.status(404).json({
+          code: 404,
+          status: "error",
+          message: "Produto não encontrado",
+          data: null
+        });
+      }
+
+      return res.status(200).json({
+        code: 200,
+        status: "success",
+        message: "Produto retornado com sucesso",
+        data: produto
+      });
+
+    } catch (parseError) {
+       return res.status(500).json({
+        code: 500,
+        status: "error",
+        message: "Erro ao interpretar produtos",
+        data: null
+      });
+    }
+  });
+});
+
+
 app.get('/api/categorias', (req, res) => {      
   const filePath = path.join(__dirname, 'json/categorias.json');
 

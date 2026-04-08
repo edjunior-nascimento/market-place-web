@@ -8,6 +8,7 @@ type CardProdutoProps = {
   nome: string;
   descricao: string;
   preco: string;
+  onClick?: () => void;
 };
 
 
@@ -17,10 +18,10 @@ export function CardProduto(
   nome,
   descricao,
   preco,
+  onClick,
 }: CardProdutoProps
 ) {  
   return (
-    <Link to="/produto" style={{ textDecoration: 'none' }}>
       <Card
           sx={{
             maxWidth: 210,
@@ -31,6 +32,7 @@ export function CardProduto(
             boxShadow: 0,
             marginTop: 13,
           }}
+          onClick={onClick}
         >
           
           <Box
@@ -91,6 +93,5 @@ export function CardProduto(
             </Box>
           </CardContent>
       </Card>
-    </Link>
   );
 }

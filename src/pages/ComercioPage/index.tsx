@@ -8,10 +8,13 @@ import ProdutoService from "../../service/produto.service";
 import { ProdutoType } from "../../types/produto.type";
 import { CategoriaType } from "../../types/categoria.type";
 import CategoriaService from "../../service/categoria.service";
+import { useNavigate } from "react-router-dom";
 
 export function ComercioPage() {  
 
   const categoriaRefs = useRef<Record<string, HTMLElement | null>>({});
+  
+  const navigate = useNavigate();
 
   const [produtos, setProdutos] = useState<ProdutoType[]>([]);
   const [categorias, setCategorias] = useState<CategoriaType[]>([]);
@@ -141,6 +144,7 @@ export function ComercioPage() {
                           nome={produto.nome}
                           descricao={produto.descricao}
                           preco={produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                          onClick={() => navigate('/produto/'+produto.codigo)}
                         />
                       ))
                     }

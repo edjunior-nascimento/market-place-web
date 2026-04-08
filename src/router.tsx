@@ -14,7 +14,7 @@ function RouterApp(){
        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<ComercioPage />} />
-                <Route path="/produto/produtoId" element={<ProdutoPage />} />
+                <Route path="/produto/:produtoId" element={<ProdutoPage />} />
                 <Route path="/pedido" element={<PedidoPage />} />
                 <Route path="/entrega" element={<EntregaPage />} />
                 <Route path="/pagamento" element={<PagamentoPage />} />
