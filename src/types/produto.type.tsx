@@ -1,6 +1,6 @@
 
 export interface ProdutoType {
-    codigo: string,
+    id: string,
     imagens: string[],
     nome: string,
     descricao: string,

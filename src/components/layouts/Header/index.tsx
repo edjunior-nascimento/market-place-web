@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 type HeaderProps = {
   link: string;
+  quantidadePedidos: number
 };
 
-export function Header({ link }: HeaderProps) {  
+export function Header({ link, quantidadePedidos }: HeaderProps) {  
   return (
     <Container>
       <AppBar position="static" elevation={0} color="transparent" sx={{ width:'100%'}}>
@@ -18,7 +19,7 @@ export function Header({ link }: HeaderProps) {
           </Link>
           <Link to="/pedido" style={{ textDecoration: 'none' }}>
             <IconButton size="large" color="primary" sx={{marginRight:'10px'}}>
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={quantidadePedidos} color="error">
                 <ShoppingCartOutlined />
               </Badge>
             </IconButton>

@@ -6,16 +6,19 @@ import { CheckboxOpcao } from "../../components/feature/CheckboxOpcao";
 import { InputCounter } from "../../components/feature/InputCounter";
 import { AddShoppingCart } from "@mui/icons-material";
 import { Link, useParams } from "react-router-dom";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProdutoType } from "../../types/produto.type";
 import ProdutoService from "../../service/produto.service";
+import { adicionar } from "../../store/pedidos.slice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export function ProdutoPage() {  
   
+  const dispatch = useAppDispatch();
   const { produtoId } = useParams();
-    const [produto, setProduto] = useState<ProdutoType | null>(null);
-    const [loading, setLoading] = useState(false);
-  
+  const [produto, setProduto] = useState<ProdutoType | null>(null);
+  const [quantidade, setQuantidade] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -33,6 +36,23 @@ export function ProdutoPage() {
      }  
   }, []);
 
+  const adicionarAoCarrinho = () => {
+    if (produto) {
+      dispatch(
+        adicionar({
+          produto: produto,
+          quantidade: quantidade,
+          precoTotal: quantidade*produto.preco,
+          status: 'Pendente',
+          dataPedido: new Date().toISOString()
+        })
+      );
+    }
+  };
+
+  const quantidadePedidos = useAppSelector((state) => {
+    return state.pedidos.pedidos.length;
+  });
 
   return (
     loading ? (
@@ -40,8 +60,8 @@ export function ProdutoPage() {
         Carregando...
       </Typography>
     ) : (
-      <Container sx={{padding:'10px'}}>
-      <Header link="/"/>  
+    <Container sx={{padding:'10px'}}>
+      <Header link="/" quantidadePedidos={quantidadePedidos}/>  
       <Box 
         sx={{ 
           px: {xs: '0px', md: '150px'},
@@ -82,14 +102,14 @@ export function ProdutoPage() {
                   min={1}
                   max={produto?.quantidade || 10}
                   initialValue={1}
-                  onChange={(value) => console.log(value)}
+                  onChange={(value) => setQuantidade(value)}
                 />
               </Box>
 
               <Box sx={{display:'flex', flexDirection: 'column', gap: '3px'}}>      
                 {
-                produto?.componentes?.map((opcional:string) => (
-                    <CheckboxOpcao habilitado={true}>{opcional}</CheckboxOpcao>
+                produto?.componentes?.map((opcional:string, index:number) => (
+                    <CheckboxOpcao key={`${opcional}-${index}`} habilitado={true}>{opcional}</CheckboxOpcao>
                   ))
                 }
               </Box>
@@ -105,7 +125,7 @@ export function ProdutoPage() {
 
               <Box sx={{display:'flex', flexDirection: 'row', justifyContent: 'space-between'}} mt={2}>
                 <Link to="/pedido"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Comprar</Button></Link>
-                <Button variant="contained"  startIcon={<AddShoppingCart />}>Adicionar ao Carrinho</Button>
+                <Button variant="contained"  startIcon={<AddShoppingCart />} onClick={adicionarAoCarrinho} >Adicionar ao Carrinho</Button>
               </Box>
             </Box>
       </Box>

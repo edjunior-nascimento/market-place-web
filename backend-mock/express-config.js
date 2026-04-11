@@ -58,7 +58,7 @@ app.get('/api/produto/:id', (req, res) => {
 
     try {
       const produtos = JSON.parse(data);
-      const produto = produtos.find(p => p.codigo === id);
+      const produto = produtos.find(p => p.id === id);
 
       if (!produto) {
         return res.status(404).json({

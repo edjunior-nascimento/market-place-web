@@ -9,6 +9,7 @@ import { ProdutoType } from "../../types/produto.type";
 import { CategoriaType } from "../../types/categoria.type";
 import CategoriaService from "../../service/categoria.service";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../store/hooks";
 
 export function ComercioPage() {  
 
@@ -72,9 +73,13 @@ export function ComercioPage() {
     });
   };
 
+  const quantidadePedidos = useAppSelector((state) => {
+    return state.pedidos.pedidos.length;
+  });
+
   return (
     <Container sx={{padding:'10px'}}>
-      <Header link="/" />
+      <Header link="/" quantidadePedidos={quantidadePedidos}/>
       <Box sx={{
         display: 'flex',
         gap: '20px',
@@ -116,11 +121,10 @@ export function ComercioPage() {
               <Typography>Carregando...</Typography>
             ) : (
               categorias.map((categoria) => (
-                <Box>
+                <Box key={categoria.id}>
                   <Typography
                     py={2} 
                     variant="h5" 
-                    key={categoria.id} 
                     ref={(el: HTMLElement | null) => {
                       if (el) categoriaRefs.current[categoria.id] = el;
                     }}
@@ -140,11 +144,11 @@ export function ComercioPage() {
 
                       filtroProdutos.filter(produto => produto.categoria === Number(categoria.id)).map((produto) => (
                         <CardProduto
-                          key={produto.codigo}
+                          key={produto.id}
                           nome={produto.nome}
                           descricao={produto.descricao}
                           preco={produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                          onClick={() => navigate('/produto/'+produto.codigo)}
+                          onClick={() => navigate('/produto/'+produto.id)}
                         />
                       ))
                     }

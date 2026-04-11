@@ -1,6 +1,6 @@
 [
   {
-    "codigo": "PRT001",
+    "id": "PRT001",
     "imagens": [
       "https://exemplo.com/imagens/feijoada.jpg",
       "https://exemplo.com/imagens/feijoada2.jpg"
@@ -13,7 +13,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT002",
+    "id": "PRT002",
     "imagens": [
       "https://exemplo.com/imagens/strogonoff.jpg"
     ],
@@ -25,7 +25,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT003",
+    "id": "PRT003",
     "imagens": [
       "https://exemplo.com/imagens/lasanha.jpg"
     ],
@@ -37,7 +37,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT004",
+    "id": "PRT004",
     "imagens": [
       "https://exemplo.com/imagens/salada.jpg"
     ],
@@ -49,7 +49,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT005",
+    "id": "PRT005",
     "imagens": [
       "https://exemplo.com/imagens/pizza.jpg"
     ],
@@ -61,7 +61,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT006",
+    "id": "PRT006",
     "imagens": [
       "https://exemplo.com/imagens/sushi.jpg"
     ],
@@ -73,7 +73,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT007",
+    "id": "PRT007",
     "imagens": [
       "https://exemplo.com/imagens/moqueca.jpg"
     ],
@@ -85,7 +85,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT008",
+    "id": "PRT008",
     "imagens": [
       "https://exemplo.com/imagens/fricasse.jpg"
     ],
@@ -97,7 +97,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT009",
+    "id": "PRT009",
     "imagens": [
       "https://exemplo.com/imagens/macarrao.jpg"
     ],
@@ -109,7 +109,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT010",
+    "id": "PRT010",
     "imagens": [
       "https://exemplo.com/imagens/saladagrega.jpg"
     ],
@@ -121,7 +121,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT011",
+    "id": "PRT011",
     "imagens": [
       "https://exemplo.com/imagens/pizzacalabresa.jpg"
     ],
@@ -133,7 +133,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT012",
+    "id": "PRT012",
     "imagens": [
       "https://exemplo.com/imagens/sashimi.jpg"
     ],
@@ -145,7 +145,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT013",
+    "id": "PRT013",
     "imagens": [
       "https://exemplo.com/imagens/acaraje.jpg"
     ],
@@ -157,7 +157,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT014",
+    "id": "PRT014",
     "imagens": [
       "https://exemplo.com/imagens/coxinha.jpg"
     ],
@@ -169,7 +169,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT015",
+    "id": "PRT015",
     "imagens": [
       "https://exemplo.com/imagens/ravioli.jpg"
     ],
@@ -181,7 +181,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT016",
+    "id": "PRT016",
     "imagens": [
       "https://exemplo.com/imagens/saladacaprese.jpg"
     ],
@@ -193,7 +193,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT017",
+    "id": "PRT017",
     "imagens": [
       "https://exemplo.com/imagens/pizzaportuguesa.jpg"
     ],
@@ -205,7 +205,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT018",
+    "id": "PRT018",
     "imagens": [
       "https://exemplo.com/imagens/temaki.jpg"
     ],
@@ -217,7 +217,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT019",
+    "id": "PRT019",
     "imagens": [
       "https://exemplo.com/imagens/picanha.jpg"
     ],
@@ -229,7 +229,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT020",
+    "id": "PRT020",
     "imagens": [
       "https://exemplo.com/imagens/parmegiana.jpg"
     ],
@@ -241,7 +241,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT021",
+    "id": "PRT021",
     "imagens": [
       "https://exemplo.com/imagens/penne.jpg"
     ],
@@ -253,7 +253,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT022",
+    "id": "PRT022",
     "imagens": [
       "https://exemplo.com/imagens/saladacolorida.jpg"
     ],
@@ -265,7 +265,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT023",
+    "id": "PRT023",
     "imagens": [
       "https://exemplo.com/imagens/pizzamussarela.jpg"
     ],
@@ -277,7 +277,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT024",
+    "id": "PRT024",
     "imagens": [
       "https://exemplo.com/imagens/uramaki.jpg"
     ],
@@ -289,7 +289,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT025",
+    "id": "PRT025",
     "imagens": [
       "https://exemplo.com/imagens/virado.jpg"
     ],
@@ -301,7 +301,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT026",
+    "id": "PRT026",
     "imagens": [
       "https://exemplo.com/imagens/carneassada.jpg"
     ],
@@ -313,7 +313,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT027",
+    "id": "PRT027",
     "imagens": [
       "https://exemplo.com/imagens/spaghetti.jpg"
     ],
@@ -325,7 +325,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT028",
+    "id": "PRT028",
     "imagens": [
       "https://exemplo.com/imagens/saladadetomate.jpg"
     ],
@@ -337,7 +337,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT029",
+    "id": "PRT029",
     "imagens": [
       "https://exemplo.com/imagens/pizzabacon.jpg"
     ],
@@ -349,7 +349,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT030",
+    "id": "PRT030",
     "imagens": [
       "https://exemplo.com/imagens/nigiri.jpg"
     ],
@@ -361,7 +361,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT031",
+    "id": "PRT031",
     "imagens": [
       "https://exemplo.com/imagens/baião.jpg"
     ],
@@ -373,7 +373,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT032",
+    "id": "PRT032",
     "imagens": [
       "https://exemplo.com/imagens/peitofrango.jpg"
     ],
@@ -385,7 +385,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT033",
+    "id": "PRT033",
     "imagens": [
       "https://exemplo.com/imagens/fettuccine.jpg"
     ],
@@ -397,7 +397,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT034",
+    "id": "PRT034",
     "imagens": [
       "https://exemplo.com/imagens/saladapalmito.jpg"
     ],
@@ -409,7 +409,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT035",
+    "id": "PRT035",
     "imagens": [
       "https://exemplo.com/imagens/pizzaquatroqueijos.jpg"
     ],
@@ -421,7 +421,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT036",
+    "id": "PRT036",
     "imagens": [
       "https://exemplo.com/imagens/sushiroll.jpg"
     ],
@@ -433,7 +433,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT037",
+    "id": "PRT037",
     "imagens": [
       "https://exemplo.com/imagens/tapioca.jpg"
     ],
@@ -445,7 +445,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT038",
+    "id": "PRT038",
     "imagens": [
       "https://exemplo.com/imagens/sobrecoxa.jpg"
     ],
@@ -457,7 +457,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT039",
+    "id": "PRT039",
     "imagens": [
       "https://exemplo.com/imagens/tagliatelle.jpg"
     ],
@@ -469,7 +469,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT040",
+    "id": "PRT040",
     "imagens": [
       "https://exemplo.com/imagens/saladabatata.jpg"
     ],
@@ -481,7 +481,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT041",
+    "id": "PRT041",
     "imagens": [
       "https://exemplo.com/imagens/pizzavegetariana.jpg"
     ],
@@ -493,7 +493,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT042",
+    "id": "PRT042",
     "imagens": [
       "https://exemplo.com/imagens/sashimiatum.jpg"
     ],
@@ -505,7 +505,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT043",
+    "id": "PRT043",
     "imagens": [
       "https://exemplo.com/imagens/cuscuz.jpg"
     ],
@@ -517,7 +517,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT044",
+    "id": "PRT044",
     "imagens": [
       "https://exemplo.com/imagens/frangoxadrez.jpg"
     ],
@@ -529,7 +529,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT045",
+    "id": "PRT045",
     "imagens": [
       "https://exemplo.com/imagens/lasanhavegetariana.jpg"
     ],
@@ -541,7 +541,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT046",
+    "id": "PRT046",
     "imagens": [
       "https://exemplo.com/imagens/saladacouve.jpg"
     ],
@@ -553,7 +553,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT047",
+    "id": "PRT047",
     "imagens": [
       "https://exemplo.com/imagens/pizzapepperoni.jpg"
     ],
@@ -565,7 +565,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT048",
+    "id": "PRT048",
     "imagens": [
       "https://exemplo.com/imagens/maki.jpg"
     ],
@@ -577,7 +577,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT049",
+    "id": "PRT049",
     "imagens": [
       "https://exemplo.com/imagens/arrozcarreteiro.jpg"
     ],
@@ -589,7 +589,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT050",
+    "id": "PRT050",
     "imagens": [
       "https://exemplo.com/imagens/coxinhas.jpg"
     ],
@@ -601,7 +601,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT051",
+    "id": "PRT051",
     "imagens": [
       "https://exemplo.com/imagens/cannelloni.jpg"
     ],
@@ -613,7 +613,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT052",
+    "id": "PRT052",
     "imagens": [
       "https://exemplo.com/imagens/saladabeterraba.jpg"
     ],
@@ -625,7 +625,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT053",
+    "id": "PRT053",
     "imagens": [
       "https://exemplo.com/imagens/pizzabrocolis.jpg"
     ],
@@ -637,7 +637,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT054",
+    "id": "PRT054",
     "imagens": [
       "https://exemplo.com/imagens/temakicalifornia.jpg"
     ],
@@ -649,7 +649,7 @@
     "categoria": 5
   },
   {
-    "codigo": "PRT055",
+    "id": "PRT055",
     "imagens": [
       "https://exemplo.com/imagens/feijoadaverde.jpg"
     ],
@@ -661,7 +661,7 @@
     "categoria": 0
   },
   {
-    "codigo": "PRT056",
+    "id": "PRT056",
     "imagens": [
       "https://exemplo.com/imagens/frangopassarinho.jpg"
     ],
@@ -673,7 +673,7 @@
     "categoria": 1
   },
   {
-    "codigo": "PRT057",
+    "id": "PRT057",
     "imagens": [
       "https://exemplo.com/imagens/gnocchi.jpg"
     ],
@@ -685,7 +685,7 @@
     "categoria": 2
   },
   {
-    "codigo": "PRT058",
+    "id": "PRT058",
     "imagens": [
       "https://exemplo.com/imagens/saladamilho.jpg"
     ],
@@ -697,7 +697,7 @@
     "categoria": 3
   },
   {
-    "codigo": "PRT059",
+    "id": "PRT059",
     "imagens": [
       "https://exemplo.com/imagens/pizzacarne.jpg"
     ],
@@ -709,7 +709,7 @@
     "categoria": 4
   },
   {
-    "codigo": "PRT060",
+    "id": "PRT060",
     "imagens": [
       "https://exemplo.com/imagens/sushiplatter.jpg"
     ],
