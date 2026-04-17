@@ -9,18 +9,18 @@ type HeaderProps = {
 
 export function Header({ link, quantidadePedidos }: HeaderProps) {  
   return (
-    <Container>
-      <AppBar position="static" elevation={0} color="transparent" sx={{ width:'100%'}}>
+    <Container sx={{paddingBottom:{ xs: '38px', md: '48px' },}}>
+      <AppBar position="fixed" elevation={0} color="default" sx={{width:'100%', top:0, zIndex: 10 }}>
        <Toolbar sx={{display:'flex',  justifyContent: 'space-between',}}>
           <Link to={link} style={{ textDecoration: 'none', color:'inherit' }}>        
             <IconButton color="inherit">
-              <ArrowBack fontSize="large" />
+              <ArrowBack />
             </IconButton>
           </Link>
           <Link to="/pedido" style={{ textDecoration: 'none' }}>
             <IconButton size="large" color="primary" sx={{marginRight:'10px'}}>
               <Badge badgeContent={quantidadePedidos} color="error">
-                <ShoppingCartOutlined />
+                <ShoppingCartOutlined fontSize="small"/>
               </Badge>
             </IconButton>
           </Link>

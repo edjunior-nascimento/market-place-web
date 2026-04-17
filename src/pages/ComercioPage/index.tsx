@@ -3,7 +3,7 @@ import { Header } from "../../components/layouts/Header";
 import { ButtonRadio } from "../../components/feature/ButtonRadio";
 import { CardProduto } from "../../components/layouts/CardProduto";
 import { InputSearch } from "../../components/feature/InputSearch";
-import { useEffect, useRef, useState, ReactNode, Ref } from "react";
+import { useEffect, useRef, useState, } from "react";
 import ProdutoService from "../../service/produto.service";
 import { ProdutoType } from "../../types/produto.type";
 import { CategoriaType } from "../../types/categoria.type";
@@ -79,7 +79,7 @@ export function ComercioPage() {
 
   return (
     <Container sx={{padding:'10px'}}>
-      <Header link="/" quantidadePedidos={quantidadePedidos}/>
+      <Header link="/" quantidadePedidos={quantidadePedidos} />
       <Box sx={{
         display: 'flex',
         gap: '20px',
@@ -107,9 +107,9 @@ export function ComercioPage() {
             scrollbarWidth: 'none',
             background: '#F5F5F5',
             position: "sticky",
-            top: 0,
+            top: { xs: '56px', md: '64px' },
             zIndex: 10,
-            }} px={1} py={2}>
+            }} px={1} py={1}>
           
           {categorias.map((categoria) => (
             <ButtonRadio key={categoria.id} label={categoria.nome} onClick={() => scrollCategoria(categoria.id)} ativado={categoria.id === categoriaSelecionada} />
