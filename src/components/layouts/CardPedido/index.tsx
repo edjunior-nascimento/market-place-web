@@ -1,19 +1,24 @@
 import {Box, Card, CardMedia, Typography } from "@mui/material";
 import { InputCounter } from "../../feature/InputCounter";
+import { useEffect, useMemo, useState } from "react";
+import { useAppDispatch } from "../../../store/hooks";
+import { atualizarValorTotal } from "../../../store/pedidos.slice";
 
 
 type CardPedidoProps = {
+  id: string;
   imagem?: string;
   titulo: string;
   descricao: string;
-  quantidade: string;
-  preco: string;
+  quantidade: number;
+  preco: number;
   modoExibicao?: boolean;
 };
 
 
 export function CardPedido(
-{
+{ 
+  id,
   imagem,
   titulo,
   descricao,
@@ -22,6 +27,20 @@ export function CardPedido(
   modoExibicao = false,
 }: CardPedidoProps
 ) {  
+  
+  const dispatch = useAppDispatch();
+
+  const [quant, setQuant] = useState(quantidade);
+  const [valor, setValor] = useState(preco * quantidade);
+  
+  useEffect(() => {
+    setValor(preco * quant);
+    dispatch(atualizarValorTotal({ 
+      id: id, 
+      quantidade: quant, 
+      valorTotal: preco * quant }));
+  }, [quant]);
+
   return (
     
     <Card
@@ -67,13 +86,13 @@ export function CardPedido(
           >
             {modoExibicao ? (
               <Typography variant="subtitle1">
-                Quant.: {quantidade}
+                Quant.: {quant}
               </Typography>
             ) : (
-              <InputCounter min={1} initialValue={parseInt(quantidade)}/>
+              <InputCounter min={1} initialValue={quant}  onChange={(value) => setQuant(value)}/>
             )}
             <Typography variant="h6" fontWeight="bold">
-              {preco}
+              {valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </Typography>
           </Box>
         </Box>

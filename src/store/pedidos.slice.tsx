@@ -29,8 +29,15 @@ const pedidosSlice = createSlice({
         remover: (state, action: PayloadAction<string>) => {
             state.pedidos = state.pedidos.filter(pedido => pedido.id !== action.payload);
         },
+        atualizarValorTotal: (state, action: PayloadAction<{ id: string; quantidade: number, valorTotal: number }>) => {
+            const item = state.pedidos.find(pedido => pedido.id === action.payload.id);
+            if (item) {
+                item.quantidade = action.payload.quantidade;
+                item.precoTotal = action.payload.valorTotal;
+            }
+        }
     }
 });
 
-export const { adicionar, atualizar, remover } = pedidosSlice.actions;
+export const { adicionar, atualizar, remover, atualizarValorTotal} = pedidosSlice.actions;
 export default pedidosSlice.reducer;

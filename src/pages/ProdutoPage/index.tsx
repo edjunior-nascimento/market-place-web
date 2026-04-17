@@ -11,6 +11,7 @@ import { ProdutoType } from "../../types/produto.type";
 import ProdutoService from "../../service/produto.service";
 import { adicionar } from "../../store/pedidos.slice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { v4 as uuid } from 'uuid';
 
 export function ProdutoPage() {  
   
@@ -40,6 +41,7 @@ export function ProdutoPage() {
     if (produto) {
       dispatch(
         adicionar({
+          id: uuid(),
           produto: produto,
           quantidade: quantidade,
           precoTotal: quantidade*produto.preco,

@@ -37,17 +37,18 @@ export function PedidoPage() {
                 Nenhum pedido selecionado.
               </Typography>
             ) : (
-              pedidos.map((pedido, index) => (
+              pedidos.map((pedido) => (
                 <CardPedido
-                  key={pedido.id ?? `${pedido.produto.id}-${index}`}
+                  id={pedido.id}
+                  key={pedido.id}
                   titulo={pedido.produto.nome}
                   descricao={pedido.produto.descricao}
-                  quantidade={pedido.quantidade.toString()}
-                  preco={pedido.precoTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                />
+                  quantidade={pedido.quantidade}
+                  preco={pedido.produto.preco}
+                  />
               ))
             )}
-
+            
           </Box>
         </Box>
         
