@@ -1,11 +1,13 @@
 import { Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography } from "@mui/material";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 
 export function TrocoPage() {  
 
   const [troco, setTroco] = useState<number>(0);
+  const navigate = useNavigate();
   
   return (
     <Container sx={{padding:'10px'}}>
@@ -30,14 +32,9 @@ export function TrocoPage() {
               <FormControlLabel control={<Checkbox />} label="Não Precisa de Troco" />
             </Box>
           </Box>
-                  
-
         </Box>
 
-        <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Link to="/pagamento"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
-          <Link to="/desconto"><Button variant="contained">Continuar</Button></Link>
-        </Box>
+        <BottomConfirmation onPrimario={()=> navigate('/desconto')} onSecundario={()=> navigate('/pagamento')}></BottomConfirmation>
 
       </Box>
     </Container>

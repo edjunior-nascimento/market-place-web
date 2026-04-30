@@ -3,9 +3,11 @@ import { CardPedido } from "../../components/layouts/CardPedido";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { CardEntrega } from "../../components/layouts/CardEntrega";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 
 export function FinalizacaoPage() {  
+  const navigate = useNavigate();
   return (
     <Container sx={{padding:'10px'}}>
       <InputStepper posicao={3}></InputStepper>
@@ -21,18 +23,20 @@ export function FinalizacaoPage() {
           <Typography py={2} variant="h5">Pedidos</Typography>
 
           <CardPedido
+            id="1"
             titulo="Produto Exemplo"
             descricao="Descrição do produto exemplo"
-            quantidade="1"
-            preco="R$ 100,00"
+            quantidade={1}
+            preco={100}
             modoExibicao={true}
           />
 
           <CardPedido
+            id="2"
             titulo="Produto Exemplo"
             descricao="Descrição do produto exemplo"
-            quantidade="1"
-            preco="R$ 100,00"
+            quantidade={1}
+            preco={100}
             modoExibicao={true}
           />
         </Box>
@@ -115,11 +119,8 @@ export function FinalizacaoPage() {
 
         </Card>
 
-        <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Link to="/pagamento"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
-          <Link to="/confirmacao"><Button variant="contained">Continuar</Button></Link>
-        </Box>
-
+        <BottomConfirmation onPrimario={()=> navigate('/confirmacao')} onSecundario={()=> navigate('/pagamento')}></BottomConfirmation>
+        
       </Box>
     </Container>
   );

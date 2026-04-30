@@ -70,6 +70,7 @@ export function ProdutoPage() {
           display: 'flex',
           flexDirection: {xs: 'column', md: 'row'},
           gap: '20px',
+          mb: '80px',
           }}>
             <Box sx={{
               width: {xs: '100%', md: '50%'},
@@ -125,7 +126,19 @@ export function ProdutoPage() {
               }} 
                 fullWidth placeholder="Observações" multiline minRows={3}/>
 
-              <Box sx={{display:'flex', flexDirection: 'row', justifyContent: 'space-between'}} mt={2}>
+              <Box
+                sx={{
+                  display:'flex', 
+                  flexDirection: 'row', 
+                  justifyContent: 'space-between',
+                  backgroundColor: '#F5F5F5',
+                  position: {xs: 'fixed', md: 'relative'},
+                  bottom: 0,
+                  left: 0,
+                  width: '100%',
+                  p:{xs: 2, md: 0},
+                  borderRadius: '10px',
+                }}>
                 <Link to="/pedido"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Comprar</Button></Link>
                 <Button variant="contained"  startIcon={<AddShoppingCart />} onClick={adicionarAoCarrinho} >Adicionar ao Carrinho</Button>
               </Box>

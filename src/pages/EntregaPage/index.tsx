@@ -5,7 +5,8 @@ import { CardEntrega } from "../../components/layouts/CardEntrega";
 import { Add, PlusOne } from "@mui/icons-material";
 import { useState } from "react";
 import { ModalEndereco } from "../../components/layouts/ModalEndereco";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 
 export function EntregaPage() {  
   
@@ -13,6 +14,7 @@ export function EntregaPage() {
     const [selected, setSelected] = useState<number | null>(null);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const navigate = useNavigate();
 
     const entregas = [
       { codigo: 1, nome: 'João', telefone: '7199999-9999', endereco: 'Rua A', numero: '123', referencia: 'Perto do mercado' },
@@ -53,10 +55,7 @@ export function EntregaPage() {
           <Button variant="text"  onClick={handleOpen} sx={{color:'#00089C'}} startIcon={<Add />}>Adicionar Endereço</Button>
         </Box>
 
-        <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Link to="/pedido"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
-          <Link to="/pagamento"><Button variant="contained">Continuar</Button></Link>
-        </Box>
+        <BottomConfirmation onPrimario={()=> navigate('/pagamento')} onSecundario={()=> navigate('/pedido')}></BottomConfirmation>
 
       </Box>
     <Modal

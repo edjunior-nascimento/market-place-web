@@ -6,10 +6,12 @@ import { Add, PlusOne } from "@mui/icons-material";
 import { useState } from "react";
 import { ModalEndereco } from "../../components/layouts/ModalEndereco";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 
 export function PagamentoPage() {  
   
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
@@ -38,10 +40,7 @@ export function PagamentoPage() {
 
         </Box>
 
-        <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Link to="/entrega"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
-          <Link to="/troco"><Button variant="contained">Continuar</Button></Link>
-        </Box>
+        <BottomConfirmation onPrimario={()=> navigate('/troco')} onSecundario={()=> navigate('/entrega')}></BottomConfirmation>
 
       </Box>
     </Container>

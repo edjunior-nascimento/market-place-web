@@ -1,11 +1,13 @@
 import { Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography } from "@mui/material";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 
 export function DescontoPage() {  
 
   const [desconto, setDesconto] = useState<string>('');
+  const navigate = useNavigate();
   
   return (
     <Container sx={{padding:'10px'}}>
@@ -28,14 +30,9 @@ export function DescontoPage() {
             <TextField fullWidth label="Cupom de Desconto" id="desconto" value={desconto?desconto:''} onChange={(e) => setDesconto(e.target.value)}/>
             <Button variant="contained" >Aplicar</Button>
           </Box>
-                  
-
         </Box>
 
-        <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Link to="/troco"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
-          <Link to="/finalizacao"><Button variant="contained">Continuar</Button></Link>
-        </Box>
+        <BottomConfirmation onPrimario={()=> navigate('/finalizacao')} onSecundario={()=> navigate('/troco')}></BottomConfirmation>
 
       </Box>
     </Container>

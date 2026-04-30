@@ -1,14 +1,17 @@
 import { Box, Button, Container, Divider, Typography } from "@mui/material";
 import { CardPedido } from "../../components/layouts/CardPedido";
 import { InputStepper } from "../../components/feature/InputStepper";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 import { PedidoType } from "../../types/pedido.type";
 import { useMemo } from "react";
+import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 
 
 
 export function PedidoPage() {  
+
+  const navigate = useNavigate();
 
   const pedidos = useAppSelector((state) => state.pedidos.pedidos);
 
@@ -72,12 +75,8 @@ export function PedidoPage() {
 
           </Box>
         )}
-       
 
-        <Box sx={{display:'flex', flexDirection: 'row', justifyContent: {xs: 'space-between',md:'flex-end'}, gap:'10px'}} mt={2}>
-          <Link to="/"><Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}}>Voltar</Button></Link>
-          <Link to="/entrega"><Button variant="contained">Continuar</Button></Link>
-        </Box>
+        <BottomConfirmation onPrimario={()=> navigate('/entrega')} onSecundario={()=> navigate('/')}></BottomConfirmation>
 
       </Box>
     </Container>
