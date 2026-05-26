@@ -34,6 +34,10 @@ export function InputCounter(
       const newValue = value - 1;
       setValue(newValue);
       onChange?.(newValue);
+      if(newValue === 0){
+        setValue(1);
+        onChange?.(1);
+      }
     }
   };
 

@@ -1,8 +1,8 @@
-import {Box, Card, CardMedia, Typography } from "@mui/material";
+import {Box, Button, Card, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from "@mui/material";
 import { InputCounter } from "../../feature/InputCounter";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch } from "../../../store/hooks";
-import { atualizarValorTotal } from "../../../store/pedidos.slice";
+import { atualizarValorTotal, remover } from "../../../store/pedidos.slice";
 
 
 type CardPedidoProps = {
@@ -30,15 +30,20 @@ export function CardPedido(
   
   const dispatch = useAppDispatch();
 
+  const [open, setOpen] = useState(false);
   const [quant, setQuant] = useState(quantidade);
   const [valor, setValor] = useState(preco * quantidade);
   
   useEffect(() => {
     setValor(preco * quant);
-    dispatch(atualizarValorTotal({ 
-      id: id, 
-      quantidade: quant, 
-      valorTotal: preco * quant }));
+
+    if(quant !== 0){
+      dispatch(atualizarValorTotal({ 
+        id: id, 
+        quantidade: quant, 
+        valorTotal: preco * quant }));
+    }
+
   }, [quant]);
 
   return (
@@ -63,7 +68,6 @@ export function CardPedido(
             sx={{ width: '100px', height: '100px' }}
           />
         </Box>
-         
 
         <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', padding:'5px', gap:'20px'}}>
           <Box sx={{display:'flex', flexDirection:'column', gap:'5px'}}>
@@ -89,13 +93,34 @@ export function CardPedido(
                 Quant.: {quant}
               </Typography>
             ) : (
-              <InputCounter min={1} initialValue={quant}  onChange={(value) => setQuant(value)}/>
+              <InputCounter min={0} initialValue={quant}  onChange={(value) => {if(value === 0){setOpen(true);}else{setQuant(value)}}}/>
             )}
             <Typography variant="h6" fontWeight="bold">
               {valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </Typography>
           </Box>
         </Box>
+
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="draggable-dialog-title"
+        >
+          <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+            Remover Pedido
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText sx={{color:'#000'}}>
+              Tem certeza de que deseja remover este pedido?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={() => {setOpen(false);}}>
+              Cancelar
+            </Button>
+            <Button onClick={() => { dispatch(remover(id)); setOpen(false); }}>Confirmar</Button>
+          </DialogActions>
+        </Dialog>
     </Card>
 
   );
