@@ -3,6 +3,7 @@ import { InputCounter } from "../../feature/InputCounter";
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch } from "../../../store/hooks";
 import { atualizarValorTotal, remover } from "../../../store/pedidos.slice";
+import { DialogConfirmation } from "../../feature/DialogConfirmation";
 
 
 type CardPedidoProps = {
@@ -101,26 +102,13 @@ export function CardPedido(
           </Box>
         </Box>
 
-        <Dialog
+        <DialogConfirmation
+          titulo="Remover Pedido"
+          descricao="Tem certeza de que deseja remover este pedido?"
           open={open}
-          onClose={() => setOpen(false)}
-          aria-labelledby="draggable-dialog-title"
-        >
-          <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-            Remover Pedido
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText sx={{color:'#000'}}>
-              Tem certeza de que deseja remover este pedido?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={() => {setOpen(false);}}>
-              Cancelar
-            </Button>
-            <Button onClick={() => { dispatch(remover(id)); setOpen(false); }}>Confirmar</Button>
-          </DialogActions>
-        </Dialog>
+          onConfirmar={() => { dispatch(remover(id)); setOpen(false); }}
+          onCancelar={() => setOpen(false)}
+        />
     </Card>
 
   );

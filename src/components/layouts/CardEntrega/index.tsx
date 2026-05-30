@@ -4,7 +4,7 @@ import { InputCounter } from "../../feature/InputCounter";
 
 
 type CardEntregaProps = {
-  codigo: number;
+  codigo: string;
   nome: string;
   telefone: string;
   endereco: string;
@@ -14,7 +14,7 @@ type CardEntregaProps = {
   modoExibicao?: boolean;
   
   onEditar?: () => void;
-  onSelecionar?: (codigo: number) => void;
+  onSelecionar?: (codigo: string) => void;
 
 };
 
@@ -83,7 +83,7 @@ export function CardEntrega(
           color="primary"  
           sx={{
             background: selecionado? '#B50303':'#E2EAFA', 
-            color: selecionado? '#FFFFFF':'#B50303', '&:hover': {background:'#E2EAFA'}
+            color: selecionado? '#FFFFFF':'#B50303'
             
           }} 
           onClick={() => onSelecionar?.(codigo)}>{selecionado ? 'Selecionado' : 'Selecionar'}</Button>

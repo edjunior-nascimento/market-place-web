@@ -1,25 +1,22 @@
 import { Box, Button, Container, Divider, Modal, Typography } from "@mui/material";
-import { CardPedido } from "../../components/layouts/CardPedido";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { CardEntrega } from "../../components/layouts/CardEntrega";
-import { Add, PlusOne } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 import { useState } from "react";
 import { ModalEndereco } from "../../components/layouts/ModalEndereco";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
+import { EntregaType } from "../../types/entrega";
+import { useAppSelector } from "../../store/hooks";
 
 export function EntregaPage() {  
-  
-    const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState<number | null>(null);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+
+    const [openModal, setOpenModal] = useState(false);
+    const [selected, setSelected] = useState<string | null>(null);
+    const [endereco, setEndereco] = useState<EntregaType | undefined>(undefined);
     const navigate = useNavigate();
 
-    const entregas = [
-      { codigo: 1, nome: 'João', telefone: '7199999-9999', endereco: 'Rua A', numero: '123', referencia: 'Perto do mercado' },
-      { codigo: 2, nome: 'Maria', telefone: '7198888-8888', endereco: 'Rua B', numero: '456', referencia: 'Ao lado da escola' },
-    ];
+    const entregas = useAppSelector((state) => state.entregas.entregas);
 
 
   return (
@@ -38,43 +35,33 @@ export function EntregaPage() {
           <Typography py={2} variant="h5">Endereço de Entrega</Typography>
 
           <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, gap:'10px'}}>
-            {entregas.map((entrega) => (
-              <CardEntrega
-                key={entrega.codigo}
-                {...entrega}
-                selecionado={selected === entrega.codigo}
-                onSelecionar={() => setSelected(entrega.codigo)}
-                onEditar={handleOpen}
-              />
-            ))}
+            {entregas.length !== 0 && (
+              entregas.map((entrega) => (
+                <CardEntrega
+                  key={entrega.id}
+                  codigo={entrega.id}
+                  {...entrega}
+                  selecionado={selected === entrega.id}
+                  onSelecionar={() => setSelected(entrega.id)}
+                  onEditar={() => {setEndereco(entrega); setOpenModal(true);}}
+                />
+              ))
+            )}
           </Box>
                   
-
         </Box>
         <Box sx={{width:"100%", display:"flex", justifyContent:"center"}}>
-          <Button variant="text"  onClick={handleOpen} sx={{color:'#00089C'}} startIcon={<Add />}>Adicionar Endereço</Button>
+          <Button variant="text"  onClick={() => {setEndereco(undefined); setOpenModal(true);}} sx={{color:'#00089C'}} startIcon={<Add />}>Adicionar Endereço</Button>
         </Box>
 
         <BottomConfirmation onPrimario={()=> navigate('/pagamento')} onSecundario={()=> navigate('/pedido')}></BottomConfirmation>
 
       </Box>
-    <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            position: 'absolute',
-            top: { xs: '50%', md: '50%' },
-            left: { xs: '50%', md: '50%' },
-            transform: { xs: 'translate(-50%, -50%)', md: 'translate(-50%, -50%)' },
-          }}
-        >
-          <ModalEndereco onFechar={handleClose} onSalvar={handleClose}></ModalEndereco>
-        </Box>
-      </Modal>
+      <ModalEndereco 
+        endereco={endereco} 
+        open={openModal} 
+        onClose={() => setOpenModal(false)}
+        />
     </Container>
   );
 }
