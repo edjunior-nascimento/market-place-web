@@ -3,6 +3,7 @@ import { InputStepper } from "../../components/feature/InputStepper";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
+import { Header } from "../../components/layouts/Header";
 
 export function DescontoPage() {  
 
@@ -11,6 +12,7 @@ export function DescontoPage() {
   
   return (
     <Container sx={{padding:'10px'}}>
+      <Header link="/troco" showCartButton={false}/>
       <InputStepper posicao={2}></InputStepper>
       <Box 
         sx={{

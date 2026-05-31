@@ -11,6 +11,7 @@ import { BottomConfirmation } from "../../components/layouts/BottomConfirmation"
 import { useAppDispatch } from "../../store/hooks";
 import { adicionarPagamento } from "../../store/compra.slice";
 import { PagamentoEnum } from "../../enum/pagamento.enum";
+import { Header } from "../../components/layouts/Header";
 
 export function PagamentoPage() {  
 
@@ -24,6 +25,7 @@ export function PagamentoPage() {
 
   return (
     <Container sx={{padding:'10px'}}>
+      <Header link="/entrega" showCartButton={false}/>
       <InputStepper posicao={2}></InputStepper>
       <Box 
         sx={{

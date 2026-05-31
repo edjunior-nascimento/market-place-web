@@ -5,11 +5,13 @@ import { CardEntrega } from "../../components/layouts/CardEntrega";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
 import { Link, useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
+import { Header } from "../../components/layouts/Header";
 
 export function FinalizacaoPage() {  
   const navigate = useNavigate();
   return (
     <Container sx={{padding:'10px'}}>
+      <Header link="/pagamento" showCartButton={false}/>
       <InputStepper posicao={3}></InputStepper>
       <Box 
         sx={{
@@ -46,7 +48,7 @@ export function FinalizacaoPage() {
             <Typography py={2} variant="h5">Endereço de Entrega</Typography>
             <CardEntrega
               key={1}
-              codigo={1}
+              codigo="1"
               nome="Antonio da Silva"
               telefone="(88) 99999-9999"
               endereco="Rua Exemplo"

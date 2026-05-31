@@ -7,6 +7,7 @@ import { PedidoType } from "../../types/pedido.type";
 import { useMemo } from "react";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 import { adicionarPedido } from "../../store/compra.slice";
+import { Header } from "../../components/layouts/Header";
 
 
 
@@ -30,6 +31,7 @@ export function PedidoPage() {
 
   return (
     <Container sx={{padding:'10px'}}>
+      <Header link="/" showCartButton={false}/>
       <InputStepper posicao={0}></InputStepper>
       <Box 
         sx={{

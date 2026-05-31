@@ -9,6 +9,7 @@ import { BottomConfirmation } from "../../components/layouts/BottomConfirmation"
 import { EntregaType } from "../../types/entrega";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { adicionarEndereco } from "../../store/compra.slice";
+import { Header } from "../../components/layouts/Header";
 
 
 export function EntregaPage() {  
@@ -31,6 +32,7 @@ export function EntregaPage() {
 
   return (
     <Container sx={{padding:'10px'}}>
+      <Header link="/pedido" showCartButton={false}/>
       <InputStepper posicao={1}></InputStepper>
       <Box 
         sx={{
