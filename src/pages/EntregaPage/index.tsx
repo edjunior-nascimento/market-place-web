@@ -7,16 +7,26 @@ import { ModalEndereco } from "../../components/layouts/ModalEndereco";
 import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 import { EntregaType } from "../../types/entrega";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { adicionarEndereco } from "../../store/compra.slice";
+
 
 export function EntregaPage() {  
 
+    const dispatch = useAppDispatch();
+  
     const [openModal, setOpenModal] = useState(false);
     const [selected, setSelected] = useState<string | null>(null);
     const [endereco, setEndereco] = useState<EntregaType | undefined>(undefined);
     const navigate = useNavigate();
 
     const entregas = useAppSelector((state) => state.entregas.entregas);
+    const handleSelecionar = (endereco: EntregaType) => {
+      if (endereco) {
+        dispatch(adicionarEndereco(endereco));
+      }
+      setSelected(endereco.id);
+    }
 
 
   return (
@@ -42,7 +52,7 @@ export function EntregaPage() {
                   codigo={entrega.id}
                   {...entrega}
                   selecionado={selected === entrega.id}
-                  onSelecionar={() => setSelected(entrega.id)}
+                  onSelecionar={() => handleSelecionar(entrega)}
                   onEditar={() => {setEndereco(entrega); setOpenModal(true);}}
                 />
               ))
@@ -54,7 +64,7 @@ export function EntregaPage() {
           <Button variant="text"  onClick={() => {setEndereco(undefined); setOpenModal(true);}} sx={{color:'#00089C'}} startIcon={<Add />}>Adicionar Endereço</Button>
         </Box>
 
-        <BottomConfirmation onPrimario={()=> navigate('/pagamento')} onSecundario={()=> navigate('/pedido')}></BottomConfirmation>
+        <BottomConfirmation disabled={!selected} onPrimario={()=> navigate('/pagamento')} onSecundario={()=> navigate('/pedido')}></BottomConfirmation>
 
       </Box>
       <ModalEndereco 

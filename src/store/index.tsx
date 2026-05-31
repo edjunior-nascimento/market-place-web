@@ -6,6 +6,7 @@ import {
   persistReducer,
 } from "redux-persist";
 import entregaSlice from "./entrega.slice";
+import compraSlice from "./compra.slice";
 
 const storage = {
   getItem: (key: string) => Promise.resolve(window.localStorage.getItem(key)),
@@ -23,6 +24,7 @@ const storage = {
 const rootReducer = combineReducers({
   pedidos: pedidosSlice,
   entregas: entregaSlice,
+  compras: compraSlice
 });
 
 const persistConfig = {

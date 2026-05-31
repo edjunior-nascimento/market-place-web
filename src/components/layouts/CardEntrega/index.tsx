@@ -46,7 +46,6 @@ export function CardEntrega(
           padding: '20px',
           gap: '20px',
           height: 'stretch',
-            
           border: selecionado ? '2px solid #B50303' : '2px solid transparent',
           cursor: 'pointer',
         }}

@@ -5,6 +5,7 @@ type BottomConfirmationProps = {
   nomeSecundario?: string;
   onPrimario?: () => void;
   onSecundario?: () => void;
+  disabled?: boolean;
 };
 
 export function BottomConfirmation(
@@ -12,7 +13,8 @@ export function BottomConfirmation(
   nomePrimario='Continuar',
   nomeSecundario='Voltar',
   onPrimario,
-  onSecundario
+  onSecundario,
+  disabled = false,
 }: BottomConfirmationProps
 ) { 
   return (
@@ -34,6 +36,7 @@ export function BottomConfirmation(
       <Button 
         variant="contained"
         onClick={onPrimario}
+        disabled={disabled}
         >
         {nomePrimario}
       </Button>

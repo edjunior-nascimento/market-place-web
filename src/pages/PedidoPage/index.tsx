@@ -2,22 +2,31 @@ import { Box, Button, Container, Divider, Typography } from "@mui/material";
 import { CardPedido } from "../../components/layouts/CardPedido";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { PedidoType } from "../../types/pedido.type";
 import { useMemo } from "react";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
+import { adicionarPedido } from "../../store/compra.slice";
 
 
 
 export function PedidoPage() {  
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const pedidos = useAppSelector((state) => state.pedidos.pedidos);
 
   const subTotal = useMemo(() => {
     return pedidos.reduce((total, pedido) => total + pedido.precoTotal, 0);
   }, [pedidos]);
+
+  const handleContinuar = () => {
+    if (pedidos.length > 0) {
+      dispatch(adicionarPedido([...pedidos]));
+      navigate('/entrega');
+    }
+  }
 
   return (
     <Container sx={{padding:'10px'}}>
@@ -76,7 +85,7 @@ export function PedidoPage() {
           </Box>
         )}
 
-        <BottomConfirmation onPrimario={()=> navigate('/entrega')} onSecundario={()=> navigate('/')}></BottomConfirmation>
+        <BottomConfirmation disabled={pedidos.length === 0} onPrimario={handleContinuar} onSecundario={()=> navigate('/')}></BottomConfirmation>
 
       </Box>
     </Container>

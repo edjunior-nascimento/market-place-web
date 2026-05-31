@@ -64,7 +64,7 @@ export function CardPagamento({ codigo, forma, selecionado, modoExibicao = false
             color="primary"  
             sx={{
               background: selecionado? '#B50303':'#E2EAFA', 
-              color: selecionado? '#FFFFFF':'#B50303', '&:hover': {background:'#E2EAFA'}
+              color: selecionado? '#FFFFFF':'#B50303',
               
             }} 
             onClick={() => onSelecionar?.(codigo)}>{selecionado ? 'Selecionado' : 'Selecionar'}</Button>

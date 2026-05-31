@@ -23,18 +23,18 @@ export function ProdutoPage() {
 
   useEffect(() => {
     setLoading(true);
-     if (produtoId) {
-       ProdutoService.getById(produtoId)
-        .then(response => {
-          setProduto(response);
-        })
-        .catch(error => {
-          console.error('Erro ao buscar produto', error);
-        })
-        .finally(() => {     
-          setLoading(false);
-        });
-     }  
+      if (produtoId) {
+        ProdutoService.getById(produtoId)
+          .then(response => {
+            setProduto(response);
+          })
+          .catch(error => {
+            console.error('Erro ao buscar produto', error);
+          })
+          .finally(() => {     
+            setLoading(false);
+          });
+      }  
   }, []);
 
   const adicionarAoCarrinho = () => {
@@ -44,9 +44,7 @@ export function ProdutoPage() {
           id: uuid(),
           produto: produto,
           quantidade: quantidade,
-          precoTotal: quantidade*produto.preco,
-          status: 'Pendente',
-          dataPedido: new Date().toISOString()
+          precoTotal: quantidade*produto.preco
         })
       );
     }

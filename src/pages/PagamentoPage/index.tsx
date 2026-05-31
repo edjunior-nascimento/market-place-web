@@ -8,11 +8,19 @@ import { ModalEndereco } from "../../components/layouts/ModalEndereco";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
 import { Link, useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
+import { useAppDispatch } from "../../store/hooks";
+import { adicionarPagamento } from "../../store/compra.slice";
+import { PagamentoEnum } from "../../enum/pagamento.enum";
 
 export function PagamentoPage() {  
-  
+
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<PagamentoEnum | null>(null);
+  const handleSelecionar = (pagamento: PagamentoEnum) => {
+    dispatch(adicionarPagamento(pagamento));
+    setSelected(pagamento);
+  }
 
   return (
     <Container sx={{padding:'10px'}}>
@@ -31,16 +39,16 @@ export function PagamentoPage() {
 
           <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, gap:'10px'}}>
             
-              <CardPagamento codigo={1} forma="cartao" selecionado={selected === 1} onSelecionar={setSelected} />
-              <CardPagamento codigo={2} forma="pix" selecionado={selected === 2} onSelecionar={setSelected} />
-              <CardPagamento codigo={3} forma="dinheiro" selecionado={selected === 3} onSelecionar={setSelected} />
+              <CardPagamento codigo={1} forma="cartao" selecionado={selected === PagamentoEnum.CARTAO_CREDITO} onSelecionar={() => handleSelecionar(PagamentoEnum.CARTAO_CREDITO)} />
+              <CardPagamento codigo={2} forma="pix" selecionado={selected === PagamentoEnum.PIX} onSelecionar={() => handleSelecionar(PagamentoEnum.PIX)} />
+              <CardPagamento codigo={3} forma="dinheiro" selecionado={selected === PagamentoEnum.DINHEIRO} onSelecionar={() => handleSelecionar(PagamentoEnum.DINHEIRO)} />
             
           </Box>
                   
 
         </Box>
 
-        <BottomConfirmation onPrimario={()=> navigate('/troco')} onSecundario={()=> navigate('/entrega')}></BottomConfirmation>
+        <BottomConfirmation disabled={selected === null} onPrimario={()=> navigate('/troco')} onSecundario={()=> navigate('/entrega')}></BottomConfirmation>
 
       </Box>
     </Container>
