@@ -12,7 +12,7 @@ export function DescontoPage() {
   
   return (
     <Container sx={{padding:'10px'}}>
-      <Header link="/troco" showCartButton={false}/>
+      <Header link="/pagamento" showCartButton={false}/>
       <InputStepper posicao={2}></InputStepper>
       <Box 
         sx={{
@@ -34,7 +34,7 @@ export function DescontoPage() {
           </Box>
         </Box>
 
-        <BottomConfirmation onPrimario={()=> navigate('/finalizacao')} onSecundario={()=> navigate('/troco')}></BottomConfirmation>
+        <BottomConfirmation onPrimario={()=> navigate('/finalizacao')} onSecundario={()=> navigate('/pagamento')}></BottomConfirmation>
 
       </Box>
     </Container>

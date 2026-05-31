@@ -18,6 +18,7 @@ export function PagamentoPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PagamentoEnum | null>(null);
+  
   const handleSelecionar = (pagamento: PagamentoEnum) => {
     dispatch(adicionarPagamento(pagamento));
     setSelected(pagamento);
@@ -50,7 +51,7 @@ export function PagamentoPage() {
 
         </Box>
 
-        <BottomConfirmation disabled={selected === null} onPrimario={()=> navigate('/troco')} onSecundario={()=> navigate('/entrega')}></BottomConfirmation>
+        <BottomConfirmation disabled={selected === null} onPrimario={()=> selected === PagamentoEnum.DINHEIRO ? navigate('/troco') : navigate('/desconto')} onSecundario={()=> navigate('/entrega')}></BottomConfirmation>
 
       </Box>
     </Container>

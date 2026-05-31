@@ -24,7 +24,7 @@ const storage = {
 const rootReducer = combineReducers({
   pedidos: pedidosSlice,
   entregas: entregaSlice,
-  compras: compraSlice
+  compra: compraSlice
 });
 
 const persistConfig = {

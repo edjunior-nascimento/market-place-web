@@ -1,6 +1,6 @@
 import { Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography } from "@mui/material";
 import { InputStepper } from "../../components/feature/InputStepper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 import { Header } from "../../components/layouts/Header";
@@ -8,6 +8,7 @@ import { Header } from "../../components/layouts/Header";
 export function TrocoPage() {  
 
   const [troco, setTroco] = useState<number>(0);
+  const [semTroco, setSemTroco] = useState<boolean>(false);
   const navigate = useNavigate();
   
   return (
@@ -29,14 +30,14 @@ export function TrocoPage() {
           </Box>
 
           <Box>
-            <TextField fullWidth label="Troco" id="troco" value={troco?troco:''} onChange={(e) => setTroco(Number(e.target.value))}/>
+            <TextField fullWidth label="Troco" id="troco" value={troco?troco:''} disabled={semTroco} sx={semTroco ? {opacity: 0.6} : {}} onChange={(e) => setTroco(Number(e.target.value))}/>
             <Box sx={{display: 'flex', justifyContent:'flex-end'}}>
-              <FormControlLabel control={<Checkbox />} label="Não Precisa de Troco" />
+              <FormControlLabel control={<Checkbox checked={semTroco} onChange={(e) => {setSemTroco(e.target.checked); if(e.target.checked) setTroco(0);}} />} label="Não Precisa de Troco"  />
             </Box>
           </Box>
         </Box>
 
-        <BottomConfirmation onPrimario={()=> navigate('/desconto')} onSecundario={()=> navigate('/pagamento')}></BottomConfirmation>
+        <BottomConfirmation disabled={!(semTroco || troco > 0) } onPrimario={()=> navigate('/desconto')} onSecundario={()=> navigate('/pagamento')}></BottomConfirmation>
 
       </Box>
     </Container>
