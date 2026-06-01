@@ -43,6 +43,13 @@ const theme = createTheme({
         },
         subtitle1: {
           color: '#000000DD'
+        },
+        body1: {
+          color: '#000000DD',
+          marginTop: 0,
+        },
+        body2: {
+          marginTop: 0,
         }
       },
     },

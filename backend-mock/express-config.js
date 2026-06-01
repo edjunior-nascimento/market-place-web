@@ -32,7 +32,7 @@ app.get('/api/produtos', (req, res) => {
       });
 
     } catch (parseError) {
-       return res.status(500).json({
+      return res.status(500).json({
         code: 500,
         status: "error",
         message: "Erro ao interpretar produtos",
@@ -87,6 +87,51 @@ app.get('/api/produto/:id', (req, res) => {
   });
 });
 
+app.get('/api/cupons/:codigo', (req, res) => {      
+  const filePath = path.join(__dirname, 'json/cupons.json');
+  const { codigo } = req.params;
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({
+        code: 500,
+        status: "error",
+        message: "Erro ao carregar os dados dos cupons",
+        data: null
+      });
+    }
+
+    try {
+      const cupons = JSON.parse(data);
+      const cupom = cupons.find(c => c.codigo === codigo);
+
+      if (!cupom) {
+        return res.status(404).json({
+          code: 404,
+          status: "error",
+          message: "Cupom não encontrado",
+          data: null
+        });
+      }
+
+      return res.status(200).json({
+        code: 200,
+        status: "success",
+        message: "Cupom retornado com sucesso",
+        data: cupom
+      });
+
+    } catch (parseError) {
+      return res.status(500).json({
+        code: 500,
+        status: "error",
+        message: "Erro ao interpretar cupons",
+        data: null
+      });
+    }
+  });
+});
+
 
 app.get('/api/categorias', (req, res) => {      
   const filePath = path.join(__dirname, 'json/categorias.json');
@@ -111,7 +156,7 @@ app.get('/api/categorias', (req, res) => {
       });
 
     } catch (parseError) {
-       return res.status(500).json({
+      return res.status(500).json({
         code: 500,
         status: "error",
         message: "Erro ao interpretar categorias",
