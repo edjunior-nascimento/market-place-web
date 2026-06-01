@@ -99,7 +99,7 @@ export function ModalEndereco(
               <TextField fullWidth label="Referência" id="referencia" value={formEndereco.referencia} onChange={(e) => setFormEndereco({...formEndereco, referencia: e.target.value})}/>
 
               <Box sx={{display:'flex', flexDirection: 'row', justifyContent: 'space-between'}} mt={2}>
-                <Button variant="contained" color="primary"  sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}} onClick={() => setOpenDialog(true)}>Excluir</Button>
+                <Button variant="contained" disabled={!formEndereco.id} sx={{background:'#E2EAFA', color: '#B50303', '&:hover': {background:'#E2EAFA'}}} onClick={() => setOpenDialog(true)}>Excluir</Button>
                 <Button variant="contained" onClick={handleSalvar} disabled={!isFormValid}>Salvar</Button>
               </Box>
 

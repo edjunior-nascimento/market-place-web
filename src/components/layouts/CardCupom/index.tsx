@@ -32,10 +32,6 @@ export function CardCupom({ desconto }: CardCupomProps) {
         <Typography sx={{border: '1px dashed #a09e9e', width: 'fit-content', px:1}} variant="body2" color="#808080" mt={1}>
             {desconto.codigo}
         </Typography>
-        <Divider sx={{ borderStyle: "dashed", borderWidth: "1px", borderColor: "#606060", my: 2 }} />
-        <Typography variant="caption" color="#606060">
-        {desconto.limiteValor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} é o valor mínimo para usar este cupom. Válido até {desconto.validoAte}.
-        </Typography>
       </Box>
     </Card>
 

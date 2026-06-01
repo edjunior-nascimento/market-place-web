@@ -1,12 +1,8 @@
-import { Box, Button, Container, Divider, Modal, Typography } from "@mui/material";
-import { CardPedido } from "../../components/layouts/CardPedido";
+import { Box, Container, Typography } from "@mui/material";
 import { InputStepper } from "../../components/feature/InputStepper";
-import { CardEntrega } from "../../components/layouts/CardEntrega";
-import { Add, PlusOne } from "@mui/icons-material";
 import { useState } from "react";
-import { ModalEndereco } from "../../components/layouts/ModalEndereco";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 import { useAppDispatch } from "../../store/hooks";
 import { adicionarPagamento } from "../../store/compra.slice";
@@ -51,7 +47,7 @@ export function PagamentoPage() {
 
         </Box>
 
-        <BottomConfirmation disabled={selected === null} onPrimario={()=> selected === PagamentoEnum.DINHEIRO ? navigate('/troco') : navigate('/desconto')} onSecundario={()=> navigate('/entrega')}></BottomConfirmation>
+        <BottomConfirmation disabled={selected === null} onPrimario={()=> navigate('/finalizacao')} onSecundario={()=> navigate('/entrega')}></BottomConfirmation>
 
       </Box>
     </Container>

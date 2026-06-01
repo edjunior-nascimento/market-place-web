@@ -3,8 +3,7 @@ import { ComercioPage } from "./pages/ComercioPage";
 import { PedidoPage } from "./pages/PedidoPage";
 import { EntregaPage } from "./pages/EntregaPage";
 import { PagamentoPage } from "./pages/PagamentoPage";
-import { TrocoPage } from "./pages/TrocoPage";
-import { DescontoPage } from "./pages/DescontoPage";
+import { TrocoPage } from "./components/layouts/ModalTroco";
 import { FinalizacaoPage } from "./pages/FinalizacaoPage";
 import { ConfirmacaoPage } from "./pages/ConfirmacaoPage";
 import { ProdutoPage } from "./pages/ProdutoPage";
@@ -22,8 +21,6 @@ function RouterApp() {
                     <Route path="/pedido" element={<PedidoPage />} />
                     <Route path="/entrega" element={<EntregaPage />} />
                     <Route path="/pagamento" element={<PagamentoPage />} />
-                    <Route path="/troco" element={<TrocoPage />} />
-                    <Route path="/desconto" element={<DescontoPage />} />
                     <Route path="/finalizacao" element={<FinalizacaoPage />} />
                     <Route path="/confirmacao" element={<ConfirmacaoPage />} />
                 </Routes>

@@ -6,6 +6,8 @@ import { CardPagamento } from "../../components/layouts/CardPagamento";
 import { Link, useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 import { Header } from "../../components/layouts/Header";
+import { CardCupom } from "../../components/layouts/CardCupom";
+import { Desconto } from "../../components/layouts/Desconto";
 
 export function FinalizacaoPage() {  
   const navigate = useNavigate();
@@ -65,6 +67,11 @@ export function FinalizacaoPage() {
               modoExibicao={true}
             />
           </Box>
+
+          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap:'5px'}}>
+            <Typography py={2} variant="h5">Cupom de Desconto</Typography>
+            <Desconto />
+          </Box>
         </Box>
 
         <Card
@@ -108,7 +115,6 @@ export function FinalizacaoPage() {
           </Box>
           
           <Divider />
-           
           <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <Typography variant="h5" fontWeight="Normal">
               Total:
@@ -117,12 +123,8 @@ export function FinalizacaoPage() {
                 R$ 300,00
             </Typography>
           </Box>
-
-
         </Card>
-
         <BottomConfirmation onPrimario={()=> navigate('/confirmacao')} onSecundario={()=> navigate('/pagamento')}></BottomConfirmation>
-        
       </Box>
     </Container>
   );
