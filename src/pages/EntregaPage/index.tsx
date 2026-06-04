@@ -34,6 +34,10 @@ export function EntregaPage() {
       if(compra.pedido.length === 0){
         navigate('/');
       }
+
+      if(compra.endereco){
+        setSelected(compra.endereco.id);
+      }
     }, [])
 
 

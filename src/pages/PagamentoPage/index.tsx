@@ -20,6 +20,10 @@ export function PagamentoPage() {
     if(compra.pedido.length === 0){
       navigate('/');
     }
+
+    if(compra.pagamento){
+      setSelected(compra.pagamento);
+    }
   }, [])
       
   const handleSelecionar = (pagamento: PagamentoEnum) => {
