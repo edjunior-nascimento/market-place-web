@@ -1,10 +1,10 @@
 import { Box, Container, Typography } from "@mui/material";
 import { InputStepper } from "../../components/feature/InputStepper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
 import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { adicionarPagamento } from "../../store/compra.slice";
 import { PagamentoEnum } from "../../enum/pagamento.enum";
 import { Header } from "../../components/layouts/Header";
@@ -14,7 +14,14 @@ export function PagamentoPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PagamentoEnum | null>(null);
-  
+  const compra = useAppSelector((state) => state.compra);
+
+  useEffect(() => {
+    if(compra.pedido.length === 0){
+      navigate('/');
+    }
+  }, [])
+      
   const handleSelecionar = (pagamento: PagamentoEnum) => {
     dispatch(adicionarPagamento(pagamento));
     setSelected(pagamento);

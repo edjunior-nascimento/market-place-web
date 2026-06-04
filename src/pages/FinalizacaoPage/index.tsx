@@ -9,7 +9,7 @@ import { Header } from "../../components/layouts/Header";
 import { Desconto } from "../../components/layouts/Desconto";
 import { useAppSelector } from "../../store/hooks";
 import { ModalTroco } from "../../components/layouts/ModalTroco";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { adicionarTotal } from "../../store/compra.slice";
 
 export function FinalizacaoPage() {
@@ -17,6 +17,13 @@ export function FinalizacaoPage() {
   const [openModal, setOpenModal] = useState(false);
   const pedidos = useAppSelector((state) => state.pedidos.pedidos);
   const compra = useAppSelector((state) => state.compra);
+
+  useEffect(() => {
+    if(compra.pedido.length === 0){
+      navigate('/');
+    }
+  }, [])
+
   const handkeFinalizar = () => {
     if(compra.pagamento === "DINHEIRO") {
       setOpenModal(true);

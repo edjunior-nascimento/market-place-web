@@ -2,7 +2,7 @@ import { Box, Button, Container, Divider, Modal, Typography } from "@mui/materia
 import { InputStepper } from "../../components/feature/InputStepper";
 import { CardEntrega } from "../../components/layouts/CardEntrega";
 import { Add } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalEndereco } from "../../components/layouts/ModalEndereco";
 import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
@@ -19,6 +19,7 @@ export function EntregaPage() {
     const [openModal, setOpenModal] = useState(false);
     const [selected, setSelected] = useState<string | null>(null);
     const [endereco, setEndereco] = useState<EntregaType | undefined>(undefined);
+    const compra = useAppSelector((state) => state.compra);
     const navigate = useNavigate();
 
     const entregas = useAppSelector((state) => state.entregas.entregas);
@@ -28,6 +29,12 @@ export function EntregaPage() {
       }
       setSelected(endereco.id);
     }
+
+    useEffect(() => {
+      if(compra.pedido.length === 0){
+        navigate('/');
+      }
+    }, [])
 
 
   return (
