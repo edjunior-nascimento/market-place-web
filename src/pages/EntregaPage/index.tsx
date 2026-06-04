@@ -43,16 +43,13 @@ export function EntregaPage() {
         }}
       >  
         <Box sx={{ display: 'flex', flexDirection: 'column', gap:'10px'}}>
-
           <Typography py={2} variant="h5">Endereço de Entrega</Typography>
-
           <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, gap:'10px'}}>
             {entregas.length !== 0 && (
               entregas.map((entrega) => (
                 <CardEntrega
                   key={entrega.id}
-                  codigo={entrega.id}
-                  {...entrega}
+                  entrega={entrega}
                   selecionado={selected === entrega.id}
                   onSelecionar={() => handleSelecionar(entrega)}
                   onEditar={() => {setEndereco(entrega); setOpenModal(true);}}
@@ -60,7 +57,6 @@ export function EntregaPage() {
               ))
             )}
           </Box>
-                  
         </Box>
         <Box sx={{width:"100%", display:"flex", justifyContent:"center"}}>
           <Button variant="text"  onClick={() => {setEndereco(undefined); setOpenModal(true);}} sx={{color:'#00089C'}} startIcon={<Add />}>Adicionar Endereço</Button>

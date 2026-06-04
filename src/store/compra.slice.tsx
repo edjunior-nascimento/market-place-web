@@ -4,16 +4,16 @@ import { PedidoType } from "../types/pedido.type";
 import { EntregaType } from "../types/entrega";
 import { PagamentoEnum } from "../enum/pagamento.enum";
 import { StatusEnum } from "../enum/status.enum";
+import { DescontoType } from "../types/desconto.type";
 
 export interface CompraState {
     pedido: PedidoType[],
     endereco: EntregaType,
+    cupom: DescontoType,
     pagamento: PagamentoEnum,
     troco: number,
-    cupom: string,
-    subTotal: number,
     taxa: number,
-    desconto: number,
+    subTotal: number,
     total: number,
     status: StatusEnum,
     data: string
@@ -25,11 +25,10 @@ const initialState: CompraState = {
     pedido: [] as PedidoType[],
     endereco: {} as EntregaType,
     pagamento: {} as PagamentoEnum,
+    cupom: {} as DescontoType,
     troco: 0,
-    cupom: "",
     subTotal: 0,
     taxa: 0,
-    desconto: 0,
     total: 0,
     status: {} as StatusEnum,
     data: "",
@@ -53,17 +52,14 @@ initialState,
         adicionarTroco: (state, action: PayloadAction<number>) => {
             state.troco = action.payload;
         },
-        adicionarCupom: (state, action: PayloadAction<string>) => {
-            state.cupom = action.payload;
+        adicionarTaxa: (state, action: PayloadAction<number>) => {
+            state.taxa = action.payload;
         },
         adicionarSubTotal: (state, action: PayloadAction<number>) => {
             state.subTotal = action.payload;
         },
-        adicionarTaxa: (state, action: PayloadAction<number>) => {
-            state.taxa = action.payload;
-        },
-        adicionarDesconto: (state, action: PayloadAction<number>) => {
-            state.desconto = action.payload;
+        adicionarCupom: (state, action: PayloadAction<DescontoType>) => {
+            state.cupom = action.payload;
         },
         adicionarTotal: (state, action: PayloadAction<number>) => {
             state.total = action.payload;
@@ -77,5 +73,5 @@ initialState,
     }
 });
 
-export const { adicionarPedido, adicionarEndereco, adicionarPagamento, adicionarTroco, adicionarCupom, adicionarSubTotal, adicionarTaxa, adicionarDesconto, adicionarTotal, adicionarStatus, adicionarData } = comprasSlice.actions;
+export const { adicionarPedido, adicionarEndereco, adicionarPagamento, adicionarTroco, adicionarTaxa, adicionarSubTotal, adicionarCupom, adicionarTotal, adicionarStatus, adicionarData } = comprasSlice.actions;
 export default comprasSlice.reducer;

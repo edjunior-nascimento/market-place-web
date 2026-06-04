@@ -1,15 +1,11 @@
 import { ArrowForward } from "@mui/icons-material";
 import {Box, Button, Card, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import { InputCounter } from "../../feature/InputCounter";
+import { EntregaType } from "../../../types/entrega";
 
 
 type CardEntregaProps = {
-  codigo: string;
-  nome: string;
-  telefone: string;
-  endereco: string;
-  numero: string;
-  referencia: string;
+entrega: EntregaType;
   selecionado?: boolean;
   modoExibicao?: boolean;
   
@@ -21,12 +17,7 @@ type CardEntregaProps = {
 
 export function CardEntrega(
 {
-  codigo,
-  nome,
-  telefone,
-  endereco,
-  numero,
-  referencia,  
+  entrega,
   selecionado,
   modoExibicao = false,
   onEditar,
@@ -52,16 +43,16 @@ export function CardEntrega(
       >
       <Box sx={{display:'flex', flexDirection:'column', gap:'5px'}}>
         <Typography variant="h6" lineHeight={1.1}>
-          {nome}
+          {entrega.nome}
         </Typography>
         <Typography variant="subtitle1" lineHeight={1}>
-          {telefone}
+          {entrega.telefone}
         </Typography>
         <Typography variant="subtitle1" lineHeight={1}>
-          {endereco}, {numero}
+          {entrega.endereco}, {entrega.numero}
         </Typography>
         <Typography variant="subtitle1" lineHeight={1}>
-          {referencia}
+          {entrega.referencia}
         </Typography>
       </Box>
 
@@ -85,7 +76,7 @@ export function CardEntrega(
             color: selecionado? '#FFFFFF':'#B50303'
             
           }} 
-          onClick={() => onSelecionar?.(codigo)}>{selecionado ? 'Selecionado' : 'Selecionar'}</Button>
+          onClick={() => onSelecionar?.(entrega.id)}>{selecionado ? 'Selecionado' : 'Selecionar'}</Button>
       </Box>
       )}
     </Card>

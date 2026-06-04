@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { PedidoType } from "../../types/pedido.type";
 import { useMemo } from "react";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
-import { adicionarPedido } from "../../store/compra.slice";
+import { adicionarPedido, adicionarSubTotal } from "../../store/compra.slice";
 import { Header } from "../../components/layouts/Header";
 
 
@@ -25,6 +25,7 @@ export function PedidoPage() {
   const handleContinuar = () => {
     if (pedidos.length > 0) {
       dispatch(adicionarPedido([...pedidos]));
+      dispatch(adicionarSubTotal(subTotal));
       navigate('/entrega');
     }
   }

@@ -1,7 +1,7 @@
 import { get } from "http";
 import { ProdutoType } from "../types/produto.type";
 import api from "./api";
-import { DescontoType } from "../types/desconto";
+import { DescontoType } from "../types/desconto.type";
 
 const DescontoService = {
     validarCupom(codigo: string): Promise<DescontoType> {

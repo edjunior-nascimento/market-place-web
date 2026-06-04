@@ -3,72 +3,81 @@ import { CardPedido } from "../../components/layouts/CardPedido";
 import { InputStepper } from "../../components/feature/InputStepper";
 import { CardEntrega } from "../../components/layouts/CardEntrega";
 import { CardPagamento } from "../../components/layouts/CardPagamento";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 import { Header } from "../../components/layouts/Header";
-import { CardCupom } from "../../components/layouts/CardCupom";
 import { Desconto } from "../../components/layouts/Desconto";
+import { useAppSelector } from "../../store/hooks";
+import { ModalTroco } from "../../components/layouts/ModalTroco";
+import { useMemo, useState } from "react";
+import { adicionarTotal } from "../../store/compra.slice";
 
-export function FinalizacaoPage() {  
+export function FinalizacaoPage() {
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+  const pedidos = useAppSelector((state) => state.pedidos.pedidos);
+  const compra = useAppSelector((state) => state.compra);
+  const handkeFinalizar = () => {
+    if(compra.pagamento === "DINHEIRO") {
+      setOpenModal(true);
+    }else{
+      navigate('/confirmacao');
+    }
+  }
+
+  const total = useMemo(() => {
+    let total = 0;
+    const subTotal = compra.subTotal;
+    const taxa = compra.taxa;
+    const desconto = compra.cupom?.valorDesconto || 0;
+    total = (subTotal + taxa) - desconto;
+    adicionarTotal(total);
+    return total;
+  }, [compra.subTotal, compra.taxa, compra.cupom]);
+
   return (
-    <Container sx={{padding:'10px'}}>
-      <Header link="/pagamento" showCartButton={false}/>
+    <Container sx={{ padding: '10px' }}>
+      <Header link="/pagamento" showCartButton={false} />
       <InputStepper posicao={3}></InputStepper>
-      <Box 
+      <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           gap: '10px',
-        px: {xs: '0px', md: '150px'},
-      }}>  
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap:'10px'}}>
-
+          px: { xs: '0px', md: '150px' },
+        }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <Typography py={2} variant="h5">Pedidos</Typography>
-
-          <CardPedido
-            id="1"
-            titulo="Produto Exemplo"
-            descricao="Descrição do produto exemplo"
-            quantidade={1}
-            preco={100}
-            modoExibicao={true}
-          />
-
-          <CardPedido
-            id="2"
-            titulo="Produto Exemplo"
-            descricao="Descrição do produto exemplo"
-            quantidade={1}
-            preco={100}
-            modoExibicao={true}
-          />
+          {
+            pedidos.map((pedido) => (
+              <CardPedido
+                id={pedido.id}
+                key={pedido.id}
+                titulo={pedido.produto.nome}
+                descricao={pedido.produto.descricao}
+                quantidade={pedido.quantidade}
+                preco={pedido.produto.preco}
+                modoExibicao={true}
+              />
+            ))
+          }
         </Box>
 
-        <Box sx={{ width: '100%', height: 'auto', display: 'flex', flexDirection: {xs:'column', md: 'row'}, gap:'10px'}}>
-          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap:'5px'}}>
+        <Box sx={{ width: '100%', height: 'auto', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: '10px' }}>
+          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <Typography py={2} variant="h5">Endereço de Entrega</Typography>
-            <CardEntrega
-              key={1}
-              codigo="1"
-              nome="Antonio da Silva"
-              telefone="(88) 99999-9999"
-              endereco="Rua Exemplo"
-              numero="123"
-              referencia="Perto do mercado"
-              modoExibicao={true}
-            />
+            <CardEntrega entrega={compra.endereco}  modoExibicao={true}/>
           </Box>
-          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap:'5px'}}>
+          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <Typography py={2} variant="h5">Forma de Pagamento</Typography>
-            <CardPagamento 
-              codigo={1} 
-              forma="cartao"
+            <CardPagamento
+              codigo={1}
+              forma={compra.pagamento}
               modoExibicao={true}
             />
           </Box>
 
-          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap:'5px'}}>
+          <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <Typography py={2} variant="h5">Cupom de Desconto</Typography>
             <Desconto />
           </Box>
@@ -76,56 +85,64 @@ export function FinalizacaoPage() {
 
         <Card
           sx={{
-          backgroundColor: '#ffffffDD',
-          padding: '20px',
-          marginTop: '20px',
-          borderRadius: 4,
-          boxShadow: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '5px',
+            backgroundColor: '#ffffffDD',
+            padding: '20px',
+            marginTop: '20px',
+            borderRadius: 4,
+            boxShadow: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '5px',
           }}
         >
 
-          <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="h6" fontWeight="Normal">
               SubTotal:
             </Typography>
             <Typography variant="h6">
-                R$ 300,00
-              </Typography>
+              {compra.pedido.reduce((acc, pedido) => acc + pedido.precoTotal, 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+            </Typography>
           </Box>
 
-          <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="h6" fontWeight="Normal">
               Taxas:
             </Typography>
             <Typography variant="h6">
-                R$ 1,00
-              </Typography>
+              {compra.taxa.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+            </Typography>
           </Box>
 
-          <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="h6" fontWeight="Normal">
               Descontos:
             </Typography>
             <Typography variant="h6">
-                R$ 300,00
-              </Typography>
+              {compra.cupom.valorDesconto ? compra.cupom.valorDesconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'R$ 0,00'}
+            </Typography>
           </Box>
-          
+
           <Divider />
-          <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="h5" fontWeight="Normal">
               Total:
             </Typography>
             <Typography variant="h5">
-                R$ 300,00
+              {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </Typography>
           </Box>
         </Card>
-        <BottomConfirmation onPrimario={()=> navigate('/confirmacao')} onSecundario={()=> navigate('/pagamento')}></BottomConfirmation>
+        <BottomConfirmation onPrimario={handkeFinalizar} onSecundario={() => navigate('/pagamento')} nomePrimario="Confirmar"></BottomConfirmation>
       </Box>
+      <ModalTroco 
+        open={openModal} 
+        onClose={() => setOpenModal(false)}
+        onConfirmar={() => {
+          setOpenModal(false);
+          navigate('/confirmacao');
+        }}
+        />
     </Container>
   );
 }

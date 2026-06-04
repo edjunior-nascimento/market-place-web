@@ -1,37 +1,36 @@
 import { Box, Button, Checkbox, Container, FormControlLabel, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
-import { InputStepper } from "../../feature/InputStepper";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BottomConfirmation } from "../BottomConfirmation";
-import { Header } from "../Header";
+import { useEffect, useState } from "react";
 import DescontoService from "../../../service/desconto.service";
-import { DescontoType } from "../../../types/desconto";
-import { useAppDispatch } from "../../../store/hooks";
-import { adicionarDesconto } from "../../../store/compra.slice";
+import { DescontoType } from "../../../types/desconto.type";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { adicionarCupom } from "../../../store/compra.slice";
 import { ConfirmationNumberOutlined } from "@mui/icons-material";
 import { CardCupom } from "../CardCupom";
 
 export function Desconto() {
 
   const [cupom, setCupom] = useState<string>('');
-  const [desconto, setDesconto] = useState<DescontoType | null>(null);
   const [mensagem, setMensagem] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  const compra = useAppSelector((state) => state.compra);
+  
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const validarDesconto = (codigo: string) => {
+  useEffect(() => {
+    if(compra.cupom && compra.cupom.codigo) {
+      setCupom(compra.cupom.codigo);
+    }}, []);
 
+  const aplicarDesconto = (codigo: string) => {
     if (codigo) {
       setLoading(true);
       DescontoService.validarCupom(codigo)
         .then(response => {
-          dispatch(adicionarDesconto(response.valorDesconto));
-          setDesconto(response);
+          dispatch(adicionarCupom(response));
           setMensagem("");
         })
         .catch(error => {
-          setDesconto(null);
+          dispatch(adicionarCupom({}as DescontoType));
           setMensagem("Cupom inválido ou expirado.");
         })
         .finally(() => {
@@ -39,8 +38,6 @@ export function Desconto() {
         });
     }
   }
-
-
 
   return (
     <Box
@@ -55,7 +52,7 @@ export function Desconto() {
         <TextField
           fullWidth
           id="desconto"
-          value={cupom ? cupom : ''}
+          value={ cupom ? cupom : ''}
           helperText={mensagem}
           onChange={(e) => { setCupom(e.target.value.toUpperCase()); setMensagem(''); }}
           slotProps={{
@@ -67,7 +64,7 @@ export function Desconto() {
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                <Button variant="text" onClick={() => validarDesconto(cupom)}>Aplicar</Button>
+                <Button variant="text" onClick={() => aplicarDesconto(cupom)}>Aplicar</Button>
                 </InputAdornment>
               )
             }
@@ -79,8 +76,8 @@ export function Desconto() {
           Carregando...
         </Typography>
       ): 
-      desconto && (
-        <CardCupom desconto={desconto}></CardCupom>
+      compra.cupom.codigo && (
+        <CardCupom desconto={compra.cupom}></CardCupom>
       )}
     </Box>
   );

@@ -1,5 +1,5 @@
 export enum PagamentoEnum {
     DINHEIRO = "DINHEIRO",
-    CARTAO_CREDITO = "CARTAO_CREDITO",
+    CARTAO = "CARTAO",
     PIX = "PIX"
 }

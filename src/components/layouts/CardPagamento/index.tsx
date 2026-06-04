@@ -1,10 +1,11 @@
 import {  CreditCard, Payments, Pix } from "@mui/icons-material";
 import {Box, Button, Card, Typography } from "@mui/material";
+import { PagamentoEnum } from "../../../enum/pagamento.enum";
 
 
 type CardPagamentoProps = {
   codigo: number;
-  forma: 'cartao' | 'pix' | 'dinheiro';
+  forma: PagamentoEnum;
   selecionado?: boolean;
   modoExibicao?: boolean;
   onSelecionar?: (codigo: number) => void;
@@ -33,19 +34,19 @@ export function CardPagamento({ codigo, forma, selecionado, modoExibicao = false
       <Box sx={{display:'flex', flexDirection:'column', gap:'10px'}}>
         
         <Box sx={{display:"flex", flexDirection:'row', gap: '10px',alignItems: 'center' }}>
-          {forma === 'cartao' && <CreditCard />}
-          {forma === 'pix' && <Pix />}
-          {forma === 'dinheiro' && <Payments />}
+          {forma === PagamentoEnum.CARTAO && <CreditCard />}
+          {forma === PagamentoEnum.PIX && <Pix />}
+          {forma === PagamentoEnum.DINHEIRO && <Payments />}
           <Typography variant="h6" lineHeight={1.1}>
-            {forma === 'cartao' && 'Cartão de Crédito'}
-            {forma === 'pix' && 'PIX'}
-            {forma === 'dinheiro' && 'Dinheiro'}
+            {forma === PagamentoEnum.CARTAO && 'Cartão'}
+            {forma === PagamentoEnum.PIX && 'PIX'}
+            {forma === PagamentoEnum.DINHEIRO && 'Dinheiro'}
           </Typography>
         </Box>
         <Typography variant="subtitle1" lineHeight={1}>
-          {forma === 'cartao' && 'O entregador levará a maquininha de cartão no momento da entrega'}
-          {forma === 'pix' && 'O pagamento deve ser feito imediatamente para proceguirmos com o pedido'}
-          {forma === 'dinheiro' && 'O pagamento deverá ser realizado diretamente ao entregador na entrega'}
+          {forma === PagamentoEnum.CARTAO && 'O entregador levará a maquininha de cartão no momento da entrega'}
+          {forma === PagamentoEnum.PIX && 'O pagamento deve ser feito imediatamente para proceguirmos com o pedido'}
+          {forma === PagamentoEnum.DINHEIRO && 'O pagamento deverá ser realizado diretamente ao entregador na entrega'}
         </Typography>
       </Box>
       {!modoExibicao && (

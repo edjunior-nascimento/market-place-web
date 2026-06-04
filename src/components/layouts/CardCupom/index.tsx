@@ -1,6 +1,6 @@
 import {  CheckOutlined, CreditCard, LocalActivityOutlined, Payments, Pix } from "@mui/icons-material";
 import {Box, Button, Card, Divider, Typography } from "@mui/material";
-import { DescontoType } from "../../../types/desconto";
+import { DescontoType } from "../../../types/desconto.type";
 
 
 type CardCupomProps = {

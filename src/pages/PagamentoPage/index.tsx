@@ -38,9 +38,9 @@ export function PagamentoPage() {
 
           <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, gap:'10px'}}>
             
-              <CardPagamento codigo={1} forma="cartao" selecionado={selected === PagamentoEnum.CARTAO_CREDITO} onSelecionar={() => handleSelecionar(PagamentoEnum.CARTAO_CREDITO)} />
-              <CardPagamento codigo={2} forma="pix" selecionado={selected === PagamentoEnum.PIX} onSelecionar={() => handleSelecionar(PagamentoEnum.PIX)} />
-              <CardPagamento codigo={3} forma="dinheiro" selecionado={selected === PagamentoEnum.DINHEIRO} onSelecionar={() => handleSelecionar(PagamentoEnum.DINHEIRO)} />
+              <CardPagamento codigo={1} forma={PagamentoEnum.CARTAO} selecionado={selected === PagamentoEnum.CARTAO} onSelecionar={() => handleSelecionar(PagamentoEnum.CARTAO)} />
+              <CardPagamento codigo={2} forma={PagamentoEnum.PIX} selecionado={selected === PagamentoEnum.PIX} onSelecionar={() => handleSelecionar(PagamentoEnum.PIX)} />
+              <CardPagamento codigo={3} forma={PagamentoEnum.DINHEIRO} selecionado={selected === PagamentoEnum.DINHEIRO} onSelecionar={() => handleSelecionar(PagamentoEnum.DINHEIRO)} />
             
           </Box>
                   
