@@ -44,7 +44,11 @@ export function EntregaPage() {
       >  
         <Box sx={{ display: 'flex', flexDirection: 'column', gap:'10px'}}>
           <Typography py={2} variant="h5">Endereço de Entrega</Typography>
-          <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, gap:'10px'}}>
+          <Box sx={{ 
+            display: 'grid', 
+            gap:'10px',  
+            gridTemplateColumns: {xs: '1fr', md: 'repeat(auto-fit, minmax(250px, 1fr))'
+            }}}>
             {entregas.length !== 0 && (
               entregas.map((entrega) => (
                 <CardEntrega

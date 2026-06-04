@@ -36,7 +36,11 @@ export function PagamentoPage() {
 
           <Typography py={2} variant="h5">Forma de Pagamento</Typography>
 
-          <Box sx={{ display: 'flex', flexDirection: {xs: 'column', md: 'row'}, gap:'10px'}}>
+          <Box sx={{ 
+                display: 'grid',
+                gap:'10px',
+                gridTemplateColumns: {xs: '1fr', md: 'repeat(auto-fit, minmax(250px, 1fr))'}
+              }}>
             
               <CardPagamento codigo={1} forma={PagamentoEnum.CARTAO} selecionado={selected === PagamentoEnum.CARTAO} onSelecionar={() => handleSelecionar(PagamentoEnum.CARTAO)} />
               <CardPagamento codigo={2} forma={PagamentoEnum.PIX} selecionado={selected === PagamentoEnum.PIX} onSelecionar={() => handleSelecionar(PagamentoEnum.PIX)} />
