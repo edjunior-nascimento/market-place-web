@@ -7,12 +7,14 @@ import { StatusEnum } from "../enum/status.enum";
 import { DescontoType } from "../types/desconto.type";
 
 export interface CompraState {
+    id: string,
     pedido: PedidoType[],
     endereco: EntregaType,
     cupom: DescontoType,
     pagamento: PagamentoEnum,
+    observacao?: string,
     troco: number,
-    taxa: number,
+    taxas: number,
     subTotal: number,
     total: number,
     status: StatusEnum,
@@ -22,13 +24,15 @@ export interface CompraState {
 }
 
 const initialState: CompraState = {
+    id: "",
     pedido: [] as PedidoType[],
     endereco: {} as EntregaType,
     pagamento: {} as PagamentoEnum,
     cupom: {} as DescontoType,
+    observacao: "",
     troco: 0,
     subTotal: 0,
-    taxa: 0,
+    taxas: 0,
     total: 0,
     status: {} as StatusEnum,
     data: "",
@@ -40,6 +44,9 @@ const comprasSlice = createSlice({
 name: "compras",
 initialState,
     reducers: {
+        adicionarId: (state, action: PayloadAction<string>) => {
+            state.id = action.payload;
+        },
         adicionarPedido: (state, action: PayloadAction<PedidoType[]>) => {
             state.pedido = action.payload;
         },
@@ -52,8 +59,11 @@ initialState,
         adicionarTroco: (state, action: PayloadAction<number>) => {
             state.troco = action.payload;
         },
-        adicionarTaxa: (state, action: PayloadAction<number>) => {
-            state.taxa = action.payload;
+        adicionarObservacao: (state, action: PayloadAction<string>) => {
+            state.observacao = action.payload;
+        },
+        adicionarTaxas: (state, action: PayloadAction<number>) => {
+            state.taxas = action.payload;
         },
         adicionarSubTotal: (state, action: PayloadAction<number>) => {
             state.subTotal = action.payload;
@@ -73,5 +83,5 @@ initialState,
     }
 });
 
-export const { adicionarPedido, adicionarEndereco, adicionarPagamento, adicionarTroco, adicionarTaxa, adicionarSubTotal, adicionarCupom, adicionarTotal, adicionarStatus, adicionarData } = comprasSlice.actions;
+export const { adicionarId, adicionarPedido, adicionarEndereco, adicionarPagamento, adicionarTroco, adicionarObservacao, adicionarTaxas, adicionarSubTotal, adicionarCupom, adicionarTotal, adicionarStatus, adicionarData } = comprasSlice.actions;
 export default comprasSlice.reducer;

@@ -7,16 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { BottomConfirmation } from "../../components/layouts/BottomConfirmation";
 import { Header } from "../../components/layouts/Header";
 import { Desconto } from "../../components/layouts/Desconto";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { ModalTroco } from "../../components/layouts/ModalTroco";
 import { useEffect, useMemo, useState } from "react";
-import { adicionarTotal } from "../../store/compra.slice";
+import { adicionarData, adicionarId, adicionarStatus, adicionarTaxas, adicionarTotal } from "../../store/compra.slice";
+import WhatsappService from "../../service/whatsapp.service";
+import { v4 as uuid } from 'uuid';
+import { StatusEnum } from "../../enum/status.enum";
 
 export function FinalizacaoPage() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const pedidos = useAppSelector((state) => state.pedidos.pedidos);
   const compra = useAppSelector((state) => state.compra);
+const dispatch = useAppDispatch();
 
   useEffect(() => {
     if(compra.pedido.length === 0){
@@ -25,22 +29,28 @@ export function FinalizacaoPage() {
   }, [])
 
   const handkeFinalizar = () => {
-    if(compra.pagamento === "DINHEIRO") {
-      setOpenModal(true);
-    }else{
-      navigate('/confirmacao');
-    }
+    // if(compra.pagamento === "DINHEIRO") {
+    //   setOpenModal(true);
+    // }else{
+    //   navigate('/confirmacao');
+    // }
+      dispatch(adicionarId(uuid()))
+      dispatch(adicionarData(new Date().toISOString()));
+      dispatch(adicionarStatus(StatusEnum.PENDENTE));
+      dispatch(adicionarTotal(total));
+      WhatsappService(compra);
+            console.log(compra);
+
   }
 
   const total = useMemo(() => {
     let total = 0;
     const subTotal = compra.subTotal;
-    const taxa = compra.taxa;
+    const taxa = compra.taxas;
     const desconto = compra.cupom?.valorDesconto || 0;
     total = (subTotal + taxa) - desconto;
-    adicionarTotal(total);
     return total;
-  }, [compra.subTotal, compra.taxa, compra.cupom]);
+  }, [compra.subTotal, compra.taxas, compra.cupom]);
 
   return (
     <Container sx={{ padding: '10px' }}>
@@ -117,7 +127,7 @@ export function FinalizacaoPage() {
               Taxas:
             </Typography>
             <Typography variant="h6">
-              {compra.taxa.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+              {compra.taxas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </Typography>
           </Box>
 

@@ -119,15 +119,6 @@ export function ProdutoPage() {
                   }
                 </Box>
 
-                <InputBase 
-                sx={{
-                  p:2,
-                  backgroundColor: 'white',
-                  borderRadius: '10px',
-                  boxShadow: '0px 2px 3px rgba(0, 0, 0, 0.2)',
-                }} 
-                  fullWidth placeholder="Observações" multiline minRows={3}/>
-
                 <Box
                   sx={{
                     display:'flex', 

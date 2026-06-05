@@ -10,9 +10,10 @@ export interface CompraType {
     endereco: EntregaType,
     pagamento: PagamentoEnum,
     cupom?: DescontoType,
+    observacao?: string,
     troco: number,
     subTotal: number,
-    taxa: number,
+    taxas: number,
     total: number,
     status: StatusEnum,
     data: string

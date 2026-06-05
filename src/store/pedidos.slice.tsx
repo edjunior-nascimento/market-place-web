@@ -29,6 +29,12 @@ const pedidosSlice = createSlice({
         remover: (state, action: PayloadAction<string>) => {
             state.pedidos = state.pedidos.filter(pedido => pedido.id !== action.payload);
         },
+        atualizarObservacao: (state, action: PayloadAction<{ id: string; observacao: string }>) => {
+            const item = state.pedidos.find(pedido => pedido.id === action.payload.id);
+            if (item) {
+                item.observacao = action.payload.observacao;
+            }
+        },
         atualizarValorTotal: (state, action: PayloadAction<{ id: string; quantidade: number, valorTotal: number }>) => {
             const item = state.pedidos.find(pedido => pedido.id === action.payload.id);
             if (item) {
@@ -39,5 +45,5 @@ const pedidosSlice = createSlice({
     }
 });
 
-export const { adicionar, atualizar, remover, atualizarValorTotal} = pedidosSlice.actions;
+export const { adicionar, atualizar, remover, atualizarObservacao, atualizarValorTotal} = pedidosSlice.actions;
 export default pedidosSlice.reducer;
